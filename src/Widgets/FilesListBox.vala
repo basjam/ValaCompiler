@@ -66,10 +66,9 @@ namespace ValaCompiler.Widgets {
             //event_box.button_press_event.connect (show_context_menu); //need to check this
 
             //TOP TITLE REGION;
-            var file_title = new Gtk.Label ("Files");
-            file_title.tooltip_text = "Highlight the files you wish to compile";
+            var file_title = new Gtk.Label (_("Files"));
+            file_title.tooltip_text = _("Highlight the files you wish to compile");
             file_title.halign = Gtk.Align.START;
-            file_title.get_style_context ().add_class ("h3");
             file_title.margin_left = 12;
             file_title.ellipsize = Pango.EllipsizeMode.END;
             event_box.add (file_title);

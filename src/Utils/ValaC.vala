@@ -35,7 +35,7 @@ namespace ValaCompiler.Utils {
         public async void compile_files (string location, string[] files) {
 
             try {
-                string[] spawn_args = {"valac", "--pkg=gtk+-3.0", "--pkg=granite", "-X", "-w"};
+                string[] spawn_args = {"valac", "--output=TEST", "--pkg=gtk+-3.0", "--pkg=granite", "-X", "-w"};
                 foreach (string file in files) {
                     spawn_args += file;
                 };

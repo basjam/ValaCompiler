@@ -38,7 +38,7 @@ namespace ValaCompiler.Widgets {
         }
 
         public void build_ui (){
-            this.tooltip_text = "Click to toggle compiling";
+            this.tooltip_text = _("Click to toggle compiling");
 
             var event_box = new Gtk.EventBox ();
             content = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
@@ -52,7 +52,7 @@ namespace ValaCompiler.Widgets {
             icon = new Gtk.Image ();
             icon.get_style_context ().add_class ("card");
             icon.halign = Gtk.Align.CENTER;
-            icon.tooltip_text = "Click to toggle compiling";
+            icon.tooltip_text = _("Click to toggle compiling");
             icon.set_from_icon_name ("user-available", Gtk.IconSize.DND);
 
             content.pack_end (icon, false, false, 0);

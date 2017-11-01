@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+947c8fbd7fd07e6b519b055a2f07075e com.github.basjam.ValaCompiler_valac.stamp
+f84d863cf35c95c9f447c55ddba50eb3 src/Window.c

@@ -23,7 +23,7 @@
     find_package(PkgConfig)
 
     # now let's actually check for the required dependencies
-    pkg_check_modules(DEPS REQUIRED gtk+-3.0)
+    pkg_check_modules(DEPS REQUIRED gtk+-3.0 granite)
 
     add_definitions(${DEPS_CFLAGS})
     link_libraries(${DEPS_LIBRARIES})
@@ -39,7 +39,19 @@
     # files we want to compile
     include(ValaPrecompile)
     vala_precompile(VALA_C ${EXEC_NAME}
-        src/hello-again.vala
+        src/Window.vala
+        src/Application.vala
+        src/Settings/Settings.vala
+        src/Utils/FileLister.vala
+        src/Utils/FilesManager.vala
+        src/Utils/Files.vala
+        src/Utils/ValaC.vala
+        src/Widgets/FilesListBottomBar.vala
+        src/Widgets/FilesListBox.vala
+        src/Widgets/FilesListRow.vala
+        src/Widgets/NavigationButton.vala
+        src/Widgets/ProjectPage.vala
+        src/Widgets/WelcomePage.vala
 
     # tell what libraries to use when compiling
     PACKAGES
@@ -54,7 +66,14 @@
     install (TARGETS ${EXEC_NAME} RUNTIME DESTINATION bin)
 
     # install our .desktop file so the Applications menu will see it
-    install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.yourusername.yourrepositoryname.desktop DESTINATION ${DATADIR}/applications/)
+    install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.basjam.ValaCompiler.desktop DESTINATION ${DATADIR}/applications/)
 
     # install our .appdata.xml file so AppCenter will see it
-    install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.yourusername.yourrepositoryname.appdata.xml DESTINATION ${DATADIR}/metainfo/)
+    install (FILES ${CMAKE_CURRENT_SOURCE_DIR}/data/com.github.basjam.ValaCompiler.appdata.xml DESTINATION ${DATADIR}/metainfo/)
+
+    # Translation files
+    set (GETTEXT_PACKAGE "${CMAKE_PROJECT_NAME}")
+    add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
+    add_subdirectory (po)
+
+

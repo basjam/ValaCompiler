@@ -26,7 +26,7 @@ namespace ValaCompiler.Widgets {
             valign = Gtk.Align.CENTER;
             halign = Gtk.Align.CENTER;
             vexpand = false;
-            this.label = "Back";
+            this.label = _("Back");
             this.get_style_context ().add_class ("back-button");
         }
 

@@ -19,12 +19,12 @@ namespace ValaCompiler.Widgets {
     public class WelcomePage : Granite.Widgets.Welcome {
 
         public WelcomePage () {
-            base ("Vala Compiler", "A simple GUI for the command line valac");
+            base (_("Vala Compiler"), _("A simple GUI for the command line valac"));
         }
 
         construct {
             
-            append ("document-open", "Source folder", "Open your source folder.");
+            append ("document-open", _("Source folder"), _("Open your source folder."));
 
             set_item_visible (1, true);
 

@@ -28,7 +28,7 @@ namespace ValaCompiler.Widgets {
             var change_location_button = new Gtk.Button ();
             change_location_button.image = new Gtk.Image.from_icon_name ("folder-open",Gtk.IconSize.DND);
             change_location_button.halign = Gtk.Align.START;
-            change_location_button.tooltip_text = "Change source folder";
+            change_location_button.tooltip_text = _("Change source folder");
 
             change_location_button.clicked.connect (() => {
                 change_location ();

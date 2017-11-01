@@ -14,6 +14,8 @@
   END LICENSE
 ***/
 
+using Granite;
+
 namespace ValaCompiler {
 
     public class Window : Gtk.Window {
@@ -88,21 +90,21 @@ namespace ValaCompiler {
         }
 
         public void run_open_folder () {
-            var folder_chooser = new Gtk.FileChooserDialog ("Select Project Folder",
+            var folder_chooser = new Gtk.FileChooserDialog (_("Select Project Folder"),
                 this,
                 Gtk.FileChooserAction.SELECT_FOLDER,
-                "Cancel",
+                _("Cancel"),
                 Gtk.ResponseType.CANCEL,
-                "Open",
+                _("Open"),
                 Gtk.ResponseType.ACCEPT);
            folder_chooser.set_transient_for (this);
 
            var vala_filter = new Gtk.FileFilter ();
-           vala_filter.set_filter_name ("Vala files");
+           vala_filter.set_filter_name (_("Vala files"));
            vala_filter.add_pattern ("*.vala");
 
            var all_files_filter = new Gtk.FileFilter ();
-           all_files_filter.set_filter_name ("All Files");
+           all_files_filter.set_filter_name (_("All Files"));
            all_files_filter.add_pattern ("*");
 
 
