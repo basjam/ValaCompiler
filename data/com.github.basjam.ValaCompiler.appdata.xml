@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Your Name <you@email.com> -->
+<component type="desktop">
+  <id>com.github.basjam.ValaCompiler.desktop</id>
+  <metadata_license>CC0</metadata_license>
+  <name>ValaCompiler</name>
+  <summary>A Simple GUI valac</summary>
+  <description>
+    <p>A simple GUI for valac that is aimed at replacing the terminal use in vala development.</p>
+  </description>
+</component>
