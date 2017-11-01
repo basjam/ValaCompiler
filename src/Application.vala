@@ -59,7 +59,6 @@ namespace ValaCompiler {
 }
 
 public static void main (string[] args){
-    X.init_threads ();
 
     var app = ValaCompiler.App.get_instance ();
 
