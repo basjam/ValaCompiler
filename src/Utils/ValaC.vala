@@ -83,6 +83,7 @@ namespace ValaCompiler.Utils {
                 if (stream_name == "stdout"){
                     //compiling done
                     compiling_done();
+                    print ("ValaC: " + stream_name + " is done.");
                 };
 
                 return false;

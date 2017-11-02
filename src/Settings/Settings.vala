@@ -21,7 +21,7 @@ public class ValaCompiler.Settings : Granite.Services.Settings {
         public string project_location {get; set;}
 
         public Settings (){
-        base ("com.github.basjam.valacompiler");
+        base ("com.github.basjam.ValaCompiler");
         }
 
 

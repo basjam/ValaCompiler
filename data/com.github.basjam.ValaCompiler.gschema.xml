@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+    <schema id="com.github.basjam.ValaCompiler" path="/com/github/basjam/ValaCompiler/" gettext-domain="ValaCompiler">
+        <key name="last-folder" type="s">
+            <default>""</default>
+            <summary>Last source folder used</summary>
+            <description>The last source folder used</description>
+        </key>
+        <key name="project-location" type="s">
+            <default>""</default>
+            <summary>Current source folder</summary>
+            <description>The current working source folder</description>
+        </key>
+    </schema>
+</schemalist>

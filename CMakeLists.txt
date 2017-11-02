@@ -13,7 +13,6 @@
 
     # what to call that directory where we install data too
     set (PKGDATADIR "${DATADIR}/com.github.basjam.ValaCompiler")
-
     set (EXEC_NAME "com.github.basjam.ValaCompiler")
     set (RELEASE_NAME "A GUI for valac.")
     set (VERSION "0.1")
@@ -23,9 +22,11 @@
     find_package(PkgConfig)
 
     # now let's actually check for the required dependencies
-    pkg_check_modules(DEPS REQUIRED gtk+-3.0 granite)
+    pkg_check_modules(DEPS REQUIRED gtk+-3.0 granite vala)
 
     add_definitions(${DEPS_CFLAGS})
+
+    add_definitions (-w)
     link_libraries(${DEPS_LIBRARIES})
     link_directories(${DEPS_LIBRARY_DIRS})
 
@@ -59,6 +60,10 @@
         granite
     )
 
+    #Gsettings
+    include (GSettings)
+    add_schema ("data/com.github.basjam.ValaCompiler.gschema.xml")
+
     # tell cmake what to call the executable we just made
     add_executable(${EXEC_NAME} ${VALA_C})
 
@@ -75,5 +80,8 @@
     set (GETTEXT_PACKAGE "${CMAKE_PROJECT_NAME}")
     add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
     add_subdirectory (po)
+
+    #TESTING LINES FROM ELEMENTARY/VIDEOS
+    add_subdirectory (data)
 
 

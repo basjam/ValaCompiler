@@ -24,7 +24,7 @@ namespace ValaCompiler {
         private Gtk.HeaderBar header;
         private Widgets.WelcomePage welcome_page;
         private Widgets.ProjectPage project_page;
-        //private Settings settings;
+        private Settings settings;
         private Widgets.NavigationButton navigation_button;
         public Utils.FilesManager files_manager;
         public App app;
@@ -111,7 +111,7 @@ namespace ValaCompiler {
            folder_chooser.add_filter (all_files_filter);
            folder_chooser.add_filter (vala_filter);
 
-           //folder_chooser.set_current_folder (settings.last_folder);
+           folder_chooser.set_current_folder (settings.last_folder);
             if (folder_chooser.run () == Gtk.ResponseType.ACCEPT) {
                 string project_location = folder_chooser.get_uri ();
                 //Add a settings file
@@ -123,7 +123,7 @@ namespace ValaCompiler {
                 //stdout.printf ("window: Sending folder address is: " + project_location + " .\n");
 
                 start_project (project_location);
-                //settings.last_folder = folder_chooser.get_current_folder ();
+                settings.last_folder = folder_chooser.get_current_folder ();
             }
 
             folder_chooser.destroy ();
@@ -134,8 +134,8 @@ namespace ValaCompiler {
             navigation_button.show ();
             files_manager = Utils.FilesManager.get_instance ();
             files_manager.list_files (project_location);
-            //settings.project_location = project_location;
-            //stdout.printf (settings.project_location);
+            settings.project_location = project_location;
+            stdout.printf (settings.project_location);
 
             main_stack.set_visible_child_full ("project", Gtk.StackTransitionType.SLIDE_LEFT);
             stdout.printf ("window: main_stack visible child is: " + main_stack.get_visible_child_name () + "\n");
