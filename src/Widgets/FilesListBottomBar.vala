@@ -15,9 +15,7 @@
 ***/
 
 namespace ValaCompiler.Widgets {
-
     public class BottomBar : Gtk.Box {
-
 
         public signal void change_location ();
         public signal void compile ();
@@ -42,10 +40,6 @@ namespace ValaCompiler.Widgets {
             });
 
             this.pack_end (compile_button, false, false, 10);
-
-
         }
-
     }
-
 }

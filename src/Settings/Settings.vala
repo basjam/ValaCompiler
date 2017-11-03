@@ -15,7 +15,6 @@
 ***/
 
 public class ValaCompiler.Settings : Granite.Services.Settings {
-        
         public string last_folder {get; set;}
         public string project_location {get; set;}
 

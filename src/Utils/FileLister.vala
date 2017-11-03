@@ -17,7 +17,6 @@
 namespace ValaCompiler.Utils {
 
     public class FileLister {
-
         public signal void found_a_file (string file);
         public signal void listing_files_done ();
 
@@ -28,14 +27,12 @@ namespace ValaCompiler.Utils {
             if (instance == null) {
                 instance = new FileLister ();
             };
-
             return instance;
         }
 
         public async void scan_files (string location) {
             //stdout.printf ("check: begin scan_files \n");
             try {
-
                 string[] spawn_args = {"ls", "-B", "-R", "-F"};
                 string[] spawn_env = Environ.get ();
                 Pid child_pid;
@@ -69,15 +66,11 @@ namespace ValaCompiler.Utils {
                 ChildWatch.add (child_pid, (pid, status) => {
                     Process.close_pid (pid);
                 });
-
-
             } catch (SpawnError e) {
                 stdout.printf ("Error:  %s\n", e.message);
             }
-
             return;
         }
-
 
         public bool process_line (IOChannel channel, IOCondition condition, string stream_name) {
             if (condition == IOCondition.HUP) {
@@ -90,14 +83,11 @@ namespace ValaCompiler.Utils {
                 return false;
             }
 
-
             try {
-
                 string line;
                 channel.read_line (out line, null, null);
                 //stdout.printf ("%s: %s", stream_name, line);
                 found_a_file (line.to_string ());
-
                 } catch (IOChannelError e) {
                     stdout.printf ("%s: IOChannelError: %s\n", stream_name, e.message);
                     return false;
@@ -105,12 +95,7 @@ namespace ValaCompiler.Utils {
                     stdout.printf ("%s: ConvertError: %s\n", stream_name, e.message);
                     return false;
                 }
-
             return true;
         }
-
-
     }
-
-
 }

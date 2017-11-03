@@ -15,25 +15,19 @@
 ***/
 
 namespace ValaCompiler.Utils {
-
     public class ValaC {
-
         public signal void compiling_line_out (string line);
         public signal void compiling_done ();
-
 
         public static ValaC instance = null;
         public static ValaC get_instance () {
             if (instance == null) {
                 instance = new ValaC ();
             };
-
             return instance;
         }
 
-
         public async void compile_files (string location, string[] files) {
-
             try {
                 string[] spawn_args = {"valac", "--output=TEST", "--pkg=gtk+-3.0", "--pkg=granite", "-X", "-w"};
                 foreach (string file in files) {
@@ -57,7 +51,6 @@ namespace ValaCompiler.Utils {
                     out standard_output,
                     out standard_error);
 
-
                     IOChannel output = new IOChannel.unix_new (standard_input);
                     output.add_watch (IOCondition.IN | IOCondition.HUP, (channel, condition) => {
                         return process_line (channel, condition, "stdout");
@@ -74,7 +67,6 @@ namespace ValaCompiler.Utils {
             } catch (SpawnError e) {
                 stdout.printf ("Error:  %s\n", e.message);
             }
-
             return;
         }
 
@@ -85,7 +77,6 @@ namespace ValaCompiler.Utils {
                     compiling_done();
                     print ("ValaC: " + stream_name + " is done.");
                 };
-
                 return false;
             }
 
@@ -101,6 +92,5 @@ namespace ValaCompiler.Utils {
             }
         return true;
         }
-
     }
 }

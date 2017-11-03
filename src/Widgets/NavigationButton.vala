@@ -29,7 +29,5 @@ namespace ValaCompiler.Widgets {
             this.label = _("Back");
             this.get_style_context ().add_class ("back-button");
         }
-
     }
-
 }

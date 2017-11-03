@@ -15,13 +15,10 @@
 ***/
 
 namespace ValaCompiler.Widgets {
-
     public class ProjectPage : Gtk.Box {
-
         public Widgets.FilesListBox files_list_box;
         public ValaCompiler.Utils.FilesManager files_manager;
         public Widgets.BottomBar bottom_bar;
-
 
         public signal void change_location ();
         public signal void compile (List<string> files);
@@ -41,37 +38,28 @@ namespace ValaCompiler.Widgets {
                 compile (files);
             });
 
-
             this.orientation = Gtk.Orientation.VERTICAL;
             this.pack_end (bottom_bar, false, false, 0);
         }
 
-
         public ProjectPage () {
-
             files_manager = ValaCompiler.Utils.FilesManager.get_instance ();
-
             files_manager.files_array_ready.connect (() =>{
                 clear_list_box ();
-
                 files_list_box = Widgets.FilesListBox.get_instance (true);
-
                 files_list_box.populate (files_manager.get_files_array ());
                 this.add (files_list_box);
-
                 this.show_all ();
             });
         }
 
         public void clear_list_box () {
-
             this.get_children ().foreach ((item) => {
                 if (item == files_list_box) {
                     this.remove (item);
                 }
             });
         }
-
     }
 }
 

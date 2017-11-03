@@ -15,15 +15,11 @@
 ***/
 
 namespace ValaCompiler.Widgets {
-
     public class FilesListBox : Gtk.Box {
-
         public Widgets.FilesListRow files_list_row;
         public ValaCompiler.Utils.FilesManager files_manager;
         public Widgets.ProjectPage project_page;
         public Widgets.FilesListRow row;
-
-
 
         Gtk.ListBox files_list_box;
         List<string> files;
@@ -39,16 +35,13 @@ namespace ValaCompiler.Widgets {
             if (instance == null || new_instance == true) {
                 instance = new FilesListBox ();
             };
-
             return instance;
         }
 
         public void populate (List<string> files_incoming) {
-
             foreach (string item in files_incoming) {
                 files.append (item);
             }
-
             build_ui ();
             show_files ();
         }
@@ -73,7 +66,6 @@ namespace ValaCompiler.Widgets {
             file_title.ellipsize = Pango.EllipsizeMode.END;
             event_box.add (file_title);
 
-
             //FILES REGION
             files_list_box = new Gtk.ListBox ();
             files_list_box.selection_mode = Gtk.SelectionMode.NONE;
@@ -81,9 +73,6 @@ namespace ValaCompiler.Widgets {
 
             files_list_box.get_style_context ().add_class ("playlist-tracks");
             //files_list_box.selected_rows_changed.connect ();
-
-
-
 
             var files_scroll = new Gtk.ScrolledWindow (null, null);
             //files_scroll.width_request = files_scroll.get_preferred_width ();
@@ -97,12 +86,12 @@ namespace ValaCompiler.Widgets {
             content.pack_start (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), false, false, 0);
             content.pack_start (files_scroll, true, true, 0);
 
-
             this.add (content);
             this.show_all();
         }
 
         private void toggle_file () {
+        //TODO changing of green light to signify compile to a row && color red to signify compile error
         }
 
         public void show_files () {
@@ -127,6 +116,5 @@ namespace ValaCompiler.Widgets {
             /*TODO Make it return a List Array of (1 & 0) that indicate whether files are compiled or not
                 by using FilesListRow.get_file_address ()*/
         }
-
     }
 }

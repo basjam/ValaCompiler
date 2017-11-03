@@ -19,7 +19,6 @@ using Granite;
 namespace ValaCompiler {
 
     public class Window : Gtk.Window {
-
         private Gtk.Stack main_stack;
         private Gtk.HeaderBar header;
         private Widgets.WelcomePage welcome_page;
@@ -36,7 +35,6 @@ namespace ValaCompiler {
             if (instance == null) {
                 instance = new Window ();
             };
-
             return instance;
         }
 
@@ -64,7 +62,6 @@ namespace ValaCompiler {
             main_stack.add_named (welcome_page, "welcome");
             main_stack.add_named (project_page, "project");
             main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
-
 
             var overlay = new Gtk.Overlay ();
             overlay.add (main_stack);
@@ -158,7 +155,5 @@ namespace ValaCompiler {
             files_manager = Utils.FilesManager.get_instance ();
             files_manager.compile (files);
         }
-
-
     }
 }

@@ -15,19 +15,14 @@
 ***/
 
 namespace ValaCompiler.Utils {
-
     public class FilesManager : GLib.Object {
-
         private string location = null;
-
         public signal void start_project (string location);
         public signal void files_array_ready ();
-
 
         public Utils.FileLister file_lister;
         public Utils.Files files;
         public Utils.ValaC valac;
-
 
         public List<string> files_array;
 
@@ -36,10 +31,8 @@ namespace ValaCompiler.Utils {
             if (instance == null) {
                 instance = new FilesManager ();
             };
-
             return instance;
         }
-
 
         private FilesManager () {
             file_lister = Utils.FileLister.get_instance ();
@@ -84,15 +77,5 @@ namespace ValaCompiler.Utils {
             valac = Utils.ValaC.get_instance ();
             valac.compile_files.begin (location, compile_list_sending);
         }
-
-
-
-
-
-
-
-
-
     }
-
 }

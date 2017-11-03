@@ -17,9 +17,6 @@
 namespace ValaCompiler.Utils {
 
     public class Files : GLib.Object{
-
-
-
         public Utils.FileLister files_lister;
         public List<string> files_array;
         public List<string> cleaned_files_array;
@@ -32,12 +29,10 @@ namespace ValaCompiler.Utils {
             if (instance == null) {
                 instance = new Files ();
             };
-
             return instance;
         }
 
         construct {
-
             List<string> files_array = new List<string> ();
             List<string> cleaned_files_array = new List<string> ();
             files_lister = Utils.FileLister.get_instance ();
@@ -47,28 +42,21 @@ namespace ValaCompiler.Utils {
 
             files_lister.listing_files_done.connect (() => {
                 clean_up_list ();
-
             });
-
         }
-
 
         public void add_file (string file){
             files_array.append (file);
             return;
         }
 
-
         public void clear_files_array () {
-
             files_array.foreach ((item) => {
                 files_array.remove (item);
-
             });
 
             cleaned_files_array.foreach ((item) => {
                 cleaned_files_array.remove (item);
-
             });
         }
 
@@ -77,7 +65,6 @@ namespace ValaCompiler.Utils {
         }
 
         public void clean_up_list () {
-
             string parent_folder = "";
             int count = 0;
             string item_temp = "";
@@ -105,16 +92,11 @@ namespace ValaCompiler.Utils {
                     cleaned_files_array.append (item_temp);
                 }
             });
-
             files_array_ready ();
         }
 
         public List<string> get_files_array () {
             return cleaned_files_array.copy ();
         }
-
-
     }
-
-
 }

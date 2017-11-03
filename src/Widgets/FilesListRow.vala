@@ -15,11 +15,8 @@
 ***/
 
 namespace ValaCompiler.Widgets {
-
     public class FilesListRow : Gtk.ListBoxRow{
-
         //ValaCompiler.Utils.FilesManager files_manager;
-
         public string file;
 
         public Gtk.Box content;
@@ -27,13 +24,10 @@ namespace ValaCompiler.Widgets {
         public Gtk.Label file_title;
 
         construct {
-
-
         }
 
         public FilesListRow (string incoming_file) {
             this.file = incoming_file;
-
             build_ui ();
         }
 
@@ -64,13 +58,10 @@ namespace ValaCompiler.Widgets {
 
             this.add (event_box);
             this.halign = Gtk.Align.FILL;
-
         }
 
         public string get_file_address () {
             return file;
         }
-
-
     }
 }

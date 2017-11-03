@@ -15,21 +15,14 @@
 ***/
 
 namespace ValaCompiler {
-
     public ValaCompiler.Settings settings;
-
     public class App : Granite.Application {
-
         public Window window;
 
-
         construct {
-
             program_name = "ValaCompiler";
             exec_name = "com.github.basjam.valacompiler";
             application_id = "com.github.basjam.valacompiler";
-
-
         }
 
         public App () {
@@ -55,14 +48,11 @@ namespace ValaCompiler {
                 window.title = program_name;
             }
         }
-
-
     }
 }
 
 public static void main (string[] args){
 
     var app = ValaCompiler.App.get_instance ();
-
     app.run (args);
  }
