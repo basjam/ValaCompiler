@@ -48,7 +48,8 @@ namespace ValaCompiler.Widgets {
             bool show_last_folder = settings.last_folder != "";
 
             last_folder_button.description = settings.last_folder;
-            set_item_visible (1,show_last_folder);
+            set_item_visible (1 ,show_last_folder);
+            this.show_all ();
         }
     }
 }
