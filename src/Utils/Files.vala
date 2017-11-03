@@ -69,6 +69,7 @@ namespace ValaCompiler.Utils {
             int count = 0;
             string item_temp = "";
             List<string> temp1_files_array = new List<string> ();
+            List<string> temp2_files_array = new List<string> ();
 
             //Removes un-printable elements eg.(enter/new line) symbols
             files_array.foreach ((item) =>{
@@ -89,9 +90,17 @@ namespace ValaCompiler.Utils {
                     parent_folder = item.slice (2,item.length - 1) + "/";
                 } else {
                     item_temp = parent_folder + item;
-                    cleaned_files_array.append (item_temp);
+                    temp2_files_array.append (item_temp);
                 }
             });
+
+            //Only keep .vala, .vapi, .gs, and .c files <-- compilable by valac
+            temp2_files_array.foreach ((item) => {
+                if (item.has_suffix (".vala") || item.has_suffix (".vapi")
+                    || item.has_suffix (".gs") || item.has_suffix (".c")) {
+                    cleaned_files_array.append (item);
+                }
+             });
             files_array_ready ();
         }
 
