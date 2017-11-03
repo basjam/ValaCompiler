@@ -48,6 +48,8 @@ namespace ValaCompiler {
         public override void activate () {
             if (window == null) {
 
+                settings.project_location = "";
+
                 window = new Window ();
                 window.application = this;
                 window.title = program_name;

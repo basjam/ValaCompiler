@@ -23,19 +23,36 @@ namespace ValaCompiler.Widgets {
         }
 
         construct {
-            
-            append ("document-open", _("Source folder"), _("Open your source folder."));
 
-            set_item_visible (1, true);
+            bool show_last_folder = settings.last_folder != "";
+
+
+            append ("document-open", _("Source folder"), _("Open your source folder."));
+            set_item_visible (0, true);
+
+            append ("document-open", _("Open last source folder"), settings.last_folder);
+            set_item_visible (1, show_last_folder);
+
+
 
             activated.connect ((index) => {
                 var window = App.get_instance ().window;
-
-                window.run_open_folder ();
+                switch (index) {
+                    case 0:
+                        window.run_open_folder ();
+                        break;
+                    case 1:
+                        window.start_project (settings.last_folder);
+                };
             });
         }
 
+        public void refresh () {
+            var last_folder_button = get_button_from_index (1);
+            bool show_last_folder = settings.last_folder != "";
 
-
+            last_folder_button.description = settings.last_folder;
+            set_item_visible (1,show_last_folder);
+        }
     }
 }
