@@ -53,6 +53,7 @@
         src/Widgets/NavigationButton.vala
         src/Widgets/ProjectPage.vala
         src/Widgets/WelcomePage.vala
+        src/Widgets/ReportPage.vala
 
     # tell what libraries to use when compiling
     PACKAGES

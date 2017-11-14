@@ -43,7 +43,11 @@ namespace ValaCompiler.Widgets {
             middle_box.margin_bottom = 5;
 
             custom_options_entry = new Gtk.Entry ();
-            custom_options_entry.placeholder_text = "Options separated a space eg: --pkg=granite --pkg=gtk+-3.0";
+            if (settings.custom_compile_options == "") {
+                custom_options_entry.placeholder_text = "Options separated a space eg: --pkg=granite --pkg=gtk+-3.0";
+            } else {
+                custom_options_entry.text = settings.custom_compile_options;
+            };
             middle_box.add (custom_options_entry);
 
             this.pack_start (middle_box, true, true, 5);
@@ -54,7 +58,7 @@ namespace ValaCompiler.Widgets {
             compile_button.margin = 5;
 
             compile_button.clicked.connect (() => {
-                //parse custom_options_entry
+                settings.custom_compile_options = custom_options_entry.text;
                 string custom_option_string = custom_options_entry.get_text ();
                 string[] custom_options_array = custom_option_string.split_set (" ");
                 compile (custom_options_array);

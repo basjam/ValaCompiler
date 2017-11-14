@@ -18,6 +18,7 @@ public class ValaCompiler.Settings : Granite.Services.Settings {
         public string last_folder {get; set;}
         public string project_location {get; set;}
         public string[] valac_options {get; set;}
+        public string custom_compile_options {get; set;}
 
         public Settings (){
         base ("com.github.basjam.ValaCompiler");

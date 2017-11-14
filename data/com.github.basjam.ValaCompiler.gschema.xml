@@ -16,5 +16,10 @@
             <summary>Options for valac</summary>
             <description>eg: [--pkg=gtk+-3.0, -X, -w ....]</description>
         </key>
+        <key name="custom-compile-options" type="s">
+            <default>""</default>
+            <summary>custom compiling options</summary>
+            <description>the bottom entry text for compiling options.</description>
+        </key>
     </schema>
 </schemalist>

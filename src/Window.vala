@@ -21,6 +21,7 @@ namespace ValaCompiler {
         private Gtk.HeaderBar header;
         private Widgets.WelcomePage welcome_page;
         private Widgets.ProjectPage project_page;
+        private Widgets.ReportPage report_page;
         private Widgets.NavigationButton navigation_button;
         public Gtk.ToggleButton options_button;
         public Utils.FilesManager files_manager;
@@ -41,6 +42,7 @@ namespace ValaCompiler {
         construct {
             welcome_page = new Widgets.WelcomePage ();
             project_page = new Widgets.ProjectPage ();
+            report_page = new Widgets.ReportPage ();
 
             set_default_geometry (800, 680);
 
@@ -64,6 +66,7 @@ namespace ValaCompiler {
             main_stack.expand = true;
             main_stack.add_named (welcome_page, "welcome");
             main_stack.add_named (project_page, "project");
+            main_stack.add_named (report_page, "report");
             main_stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
             var overlay = new Gtk.Overlay ();
@@ -150,7 +153,14 @@ namespace ValaCompiler {
             app = App.get_instance ();
             header.title = app.program_name;
 
-            main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.SLIDE_RIGHT);
+            switch (main_stack.get_visible_child_name ()) {
+                case "project":
+                    main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.SLIDE_RIGHT);
+                    break;
+                case "report":
+                    main_stack.set_visible_child_full ("project", Gtk.StackTransitionType.SLIDE_RIGHT);
+                    break;
+            }
             //stdout.printf ("window: main_stack visible child is: " + main_stack.get_visible_child_name () + "\n");
             return;
         }
@@ -159,6 +169,7 @@ namespace ValaCompiler {
 
             files_manager = Utils.FilesManager.get_instance ();
             files_manager.compile (files);
+            main_stack.set_visible_child_full ("project", Gtk.StackTransitionType.SLIDE_RIGHT);
         }
     }
 }
