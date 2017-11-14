@@ -11,5 +11,10 @@
             <summary>Current source folder</summary>
             <description>The current working source folder</description>
         </key>
+        <key name="valac-options" type="as">
+            <default>[]</default>
+            <summary>Options for valac</summary>
+            <description>eg: [--pkg=gtk+-3.0, -X, -w ....]</description>
+        </key>
     </schema>
 </schemalist>

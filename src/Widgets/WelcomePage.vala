@@ -15,7 +15,6 @@
 ***/
 
 namespace ValaCompiler.Widgets {
-
     public class WelcomePage : Granite.Widgets.Welcome {
 
         public WelcomePage () {

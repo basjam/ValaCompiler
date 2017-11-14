@@ -16,7 +16,8 @@
 
 namespace ValaCompiler.Widgets {
     public class FilesListRow : Gtk.ListBoxRow{
-        //ValaCompiler.Utils.FilesManager files_manager;
+        public signal void toggle_file (string file_name);
+
         public string file;
 
         public Gtk.Box content;
@@ -57,6 +58,9 @@ namespace ValaCompiler.Widgets {
             content.pack_start (file_title, true, true, 0);
 
             this.add (event_box);
+            this.get_style_context ().add_class ("card");
+            this.margin_top = 0;
+            this.margin_bottom = 3;
             this.halign = Gtk.Align.FILL;
         }
 

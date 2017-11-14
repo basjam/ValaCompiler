@@ -24,10 +24,10 @@ namespace ValaCompiler.Widgets {
         construct {
             can_focus = false;
             valign = Gtk.Align.CENTER;
-            halign = Gtk.Align.CENTER;
+            halign = Gtk.Align.FILL;
             vexpand = false;
             this.label = _("Back");
-            this.get_style_context ().add_class ("back-button");
+            this.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
         }
     }
 }

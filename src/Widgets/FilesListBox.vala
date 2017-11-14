@@ -20,6 +20,7 @@ namespace ValaCompiler.Widgets {
         public ValaCompiler.Utils.FilesManager files_manager;
         public Widgets.ProjectPage project_page;
         public Widgets.FilesListRow row;
+        public Gtk.Label file_title;
 
         Gtk.ListBox files_list_box;
         List<string> files;
@@ -29,7 +30,7 @@ namespace ValaCompiler.Widgets {
 
         public FilesListBox () {
         }
-
+        //instance retriever with a boolean to create a new instance
         public static FilesListBox instance = null;
         public static FilesListBox get_instance (bool new_instance) {
             if (instance == null || new_instance == true) {
@@ -59,7 +60,7 @@ namespace ValaCompiler.Widgets {
             //event_box.button_press_event.connect (show_context_menu); //need to check this
 
             //TOP TITLE REGION;
-            var file_title = new Gtk.Label (_("Files"));
+            file_title = new Gtk.Label (_("Files"));
             file_title.tooltip_text = _("Highlight the files you wish to compile");
             file_title.halign = Gtk.Align.START;
             file_title.margin_left = 12;
@@ -71,11 +72,7 @@ namespace ValaCompiler.Widgets {
             files_list_box.selection_mode = Gtk.SelectionMode.NONE;
             files_list_box.activate_on_single_click = true;
 
-            files_list_box.get_style_context ().add_class ("playlist-tracks");
-            //files_list_box.selected_rows_changed.connect ();
-
             var files_scroll = new Gtk.ScrolledWindow (null, null);
-            //files_scroll.width_request = files_scroll.get_preferred_width ();
             files_scroll.expand = true;
             files_scroll.kinetic_scrolling = true;
 
@@ -113,8 +110,8 @@ namespace ValaCompiler.Widgets {
                 files_to_be_sent.append (item);
             };
             return files_to_be_sent;
-            /*TODO Make it return a List Array of (1 & 0) that indicate whether files are compiled or not
-                by using FilesListRow.get_file_address ()*/
+            /*TODO Make it return a List Array of (1 & 0) that indicate whether a file at the same
+            location is to be compiled (maybe by implementing FilesListRow.get_file_address ()??)*/
         }
     }
 }

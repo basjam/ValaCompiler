@@ -14,8 +14,6 @@
   END LICENSE
 ***/
 
-using Granite;
-
 namespace ValaCompiler {
 
     public class Window : Gtk.Window {
@@ -24,8 +22,10 @@ namespace ValaCompiler {
         private Widgets.WelcomePage welcome_page;
         private Widgets.ProjectPage project_page;
         private Widgets.NavigationButton navigation_button;
+        public Gtk.ToggleButton options_button;
         public Utils.FilesManager files_manager;
         public App app;
+
 
         public Window () {
         }
@@ -46,14 +46,17 @@ namespace ValaCompiler {
 
             header = new Gtk.HeaderBar ();
             header.set_show_close_button (true);
-            header.get_style_context ().add_class ("compact");
+            header.height_request = 47;
 
             navigation_button = new Widgets.NavigationButton ();
             navigation_button.clicked.connect (() => {
                 navigate_back ();
             });
-
             header.pack_start (navigation_button);
+
+            options_button = new Gtk.ToggleButton ();
+            options_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+            header.pack_end (options_button);
 
             set_titlebar (header);
 
@@ -70,6 +73,7 @@ namespace ValaCompiler {
             show_all ();
 
             navigation_button.hide ();
+            options_button.hide ();
 
             main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.NONE);
             stdout.printf ("window: main_stack visible child is: " + main_stack.get_visible_child_name () + "\n");
@@ -82,6 +86,11 @@ namespace ValaCompiler {
 
             project_page.compile.connect ((files) => {
                 compile (files);
+            });
+
+            options_button.toggled.connect (() => {
+                project_page.show_side_pane (options_button.active);
+                //print ("Window: just changed project_page.toggle_options_pane to : " + project_page.toggle_options_pane.to_string () + "\n");
             });
         }
 
@@ -103,50 +112,46 @@ namespace ValaCompiler {
            all_files_filter.set_filter_name (_("All Files"));
            all_files_filter.add_pattern ("*");
 
-
            folder_chooser.add_filter (all_files_filter);
            folder_chooser.add_filter (vala_filter);
 
             if (folder_chooser.run () == Gtk.ResponseType.ACCEPT) {
                 string project_location = folder_chooser.get_uri ();
-                //Add a settings file
                 //stdout.printf ("window: Selected folder is: " + project_location + " .\n");
-
                 project_location = project_location.substring (7, (project_location.length - 7));
                 project_location = project_location.replace ("%20", " ");
-
                 //stdout.printf ("window: Sending folder address is: " + project_location + " .\n");
-
                 start_project (project_location);
                 settings.last_folder = folder_chooser.get_current_folder ();
             }
-
             folder_chooser.destroy ();
         }
 
         public void start_project (string project_location) {
-
             navigation_button.show ();
+            options_button.show ();
+            header.title = header.title + " (" + project_location + ")";
             files_manager = Utils.FilesManager.get_instance ();
             files_manager.list_files (project_location);
             settings.project_location = project_location;
             //stdout.printf (settings.project_location);
-
             main_stack.set_visible_child_full ("project", Gtk.StackTransitionType.SLIDE_LEFT);
-            //stdout.printf ("window: main_stack visible child is: " + main_stack.get_visible_child_name () + "\n");
+            stdout.printf ("window: main_stack visible child is: " + main_stack.get_visible_child_name () + "\n");
+            //ProjectPage sidepane
 
         }
 
         public void navigate_back () {
-
             navigation_button.hide ();
+            options_button.hide ();
             files_manager = Utils.FilesManager.get_instance ();
             files_manager.clear_files_array ();
             welcome_page.refresh ();
-            //project_page.clear_list_box ();
+            app = App.get_instance ();
+            header.title = app.program_name;
 
             main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.SLIDE_RIGHT);
-            stdout.printf ("window: main_stack visible child is: " + main_stack.get_visible_child_name () + "\n");
+            //stdout.printf ("window: main_stack visible child is: " + main_stack.get_visible_child_name () + "\n");
             return;
         }
 

@@ -15,7 +15,7 @@
 ***/
 
 namespace ValaCompiler {
-    public ValaCompiler.Settings settings;
+    public Settings settings;
     public class App : Granite.Application {
         public Window window;
 
