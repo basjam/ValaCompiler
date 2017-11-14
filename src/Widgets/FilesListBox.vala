@@ -134,10 +134,7 @@ namespace ValaCompiler.Widgets {
                 };
             };
 
-
             return files_to_be_sent;
-            /*TODO Make it return a List Array of (1 & 0) that indicate whether a file at the same
-            location is to be compiled (maybe by implementing FilesListRow.get_file_address ()??)*/
         }
     }
 }

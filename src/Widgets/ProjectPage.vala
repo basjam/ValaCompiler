@@ -82,11 +82,6 @@ namespace ValaCompiler.Widgets {
                     files.append (item);
                 });
 
-                files.foreach ((item) => {
-                    print ("PROJECTPAGE: " + item + "\n");
-                });
-
-
                 //Parsing options
                 string[] options_string = {};
                 if (gtk_checkbutton.active == true) {
