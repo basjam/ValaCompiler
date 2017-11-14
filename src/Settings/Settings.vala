@@ -15,13 +15,16 @@
 ***/
 
 public class ValaCompiler.Settings : Granite.Services.Settings {
-        public string last_folder {get; set;}
-        public string project_location {get; set;}
-        public string[] valac_options {get; set;}
-        public string custom_compile_options {get; set;}
+    public string last_folder {get; set;}
+    public string project_location {get; set;}
+    public string[] valac_options {get; set;}
+    public string custom_compile_options {get; set;}
+    public bool gtk {get; set;}
+    public bool show_c_warnings {get; set;}
+    public bool  options_button {get; set;}
 
-        public Settings (){
-        base ("com.github.basjam.ValaCompiler");
-        }
+    public Settings () {
+    base ("com.github.basjam.ValaCompiler");
+    }
  }
 

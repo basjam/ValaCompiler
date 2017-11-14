@@ -16,8 +16,8 @@
 
 namespace ValaCompiler.Utils {
     public class ValaC {
-        public signal void compiling_line_out (string line);
-        public signal void compiling_done ();
+        public signal void compile_line_out (string line);
+        public signal void compile_done ();
 
         public static ValaC instance = null;
         public static ValaC get_instance () {
@@ -51,7 +51,7 @@ namespace ValaCompiler.Utils {
                     out standard_output,
                     out standard_error);
 
-                    IOChannel output = new IOChannel.unix_new (standard_input);
+                    IOChannel output = new IOChannel.unix_new (standard_output);
                     output.add_watch (IOCondition.IN | IOCondition.HUP, (channel, condition) => {
                         return process_line (channel, condition, "stdout");
                     });
@@ -73,12 +73,12 @@ namespace ValaCompiler.Utils {
         public bool process_line (IOChannel channel, IOCondition condition, string stream_name) {
             if (condition == IOCondition.HUP) {
                 if (stream_name == "stdout"){
-                    //compiling done
-                    compiling_done();
-                    print ("ValaC: " + stream_name + " is done. \n");
+                    //compile done
+                    compile_done();
+                    //print ("ValaC: " + stream_name + " is done. \n");
                 };
                 if (stream_name == "stderr"){
-                    print ("ValaC: " + stream_name + " is done.\n");
+                    //print ("ValaC: " + stream_name + " is done.\n");
                 }
                 return false;
             }
@@ -86,8 +86,8 @@ namespace ValaCompiler.Utils {
             try {
                 string line;
                 channel.read_line (out line, null, null);
-                //compiling_line_out ();
-                print ("ValaC: " + stream_name + ": " + line );
+                compile_line_out (line);
+                //print ("ValaC: " + stream_name + ": " + line );
             } catch (IOChannelError e) {
                 stdout.printf ("%s: IOChannelError: %s\n", stream_name, e.message);
             } catch (ConvertError e) {

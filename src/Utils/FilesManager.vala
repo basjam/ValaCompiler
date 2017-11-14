@@ -40,6 +40,7 @@ namespace ValaCompiler.Utils {
             files.files_array_ready.connect (() => {
                 this.files_array_ready ();
             });
+
         }
 
         public void list_files (string location) {

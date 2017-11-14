@@ -25,7 +25,7 @@ namespace ValaCompiler.Widgets {
         public Gtk.Box options_checkbutton_box;
         public Gtk.CheckButton granite_checkbutton;
         public Gtk.Label options_label;
-        public Gtk.CheckButton show_c_error_checkbutton;
+        public Gtk.CheckButton show_c_warnings_checkbutton;
         public bool toggle_options_pane;
         public Window window;
         public Gtk.Stack options_pane_stack;
@@ -55,12 +55,13 @@ namespace ValaCompiler.Widgets {
 
 
             gtk_checkbutton = new Gtk.CheckButton.with_label ("gtk+-3.0");
-            gtk_checkbutton.active = true;
+            gtk_checkbutton.active = settings.gtk;
             gtk_checkbutton.get_style_context ().add_class (Granite.STYLE_CLASS_CARD);
             options_checkbutton_box.pack_end (gtk_checkbutton, false, false, 2);
 
-            show_c_error_checkbutton = new Gtk.CheckButton.with_label ("Show c warnings");
-            options_checkbutton_box.pack_end (show_c_error_checkbutton, false, false, 3);
+            show_c_warnings_checkbutton = new Gtk.CheckButton.with_label ("Show c warnings");
+            show_c_warnings_checkbutton.active = settings.show_c_warnings;
+            options_checkbutton_box.pack_end (show_c_warnings_checkbutton, false, false, 3);
 
             options_pane.pack_start (options_checkbutton_box, true, true, 3);
             var nothing_grid = new Gtk.Grid ();
@@ -81,13 +82,17 @@ namespace ValaCompiler.Widgets {
                     files.append (item);
                 });
 
+                files.foreach ((item) => {
+                    print ("PROJECTPAGE: " + item + "\n");
+                });
+
 
                 //Parsing options
                 string[] options_string = {};
                 if (gtk_checkbutton.active == true) {
                     options_string += "--pkg=gtk+-3.0";
                 };
-                if (show_c_error_checkbutton.active == false) {
+                if (show_c_warnings_checkbutton.active == false) {
                     options_string += "-X";
                     options_string += "-w";
                 };
@@ -101,8 +106,6 @@ namespace ValaCompiler.Widgets {
                 }
                 compile (files);
             });
-
-
 
             this.orientation = Gtk.Orientation.VERTICAL;
             this.pack_start (middle_box, true, true, 2);

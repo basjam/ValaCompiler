@@ -41,7 +41,8 @@ namespace ValaCompiler.Utils {
                 int standard_output;
                 int standard_input;
 
-                Process.spawn_async_with_pipes (location,
+                Process.spawn_async_with_pipes (
+                    location,
                     spawn_args,
                     spawn_env,
                     SpawnFlags.SEARCH_PATH | SpawnFlags.DO_NOT_REAP_CHILD,

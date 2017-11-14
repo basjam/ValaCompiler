@@ -15,25 +15,30 @@
 ***/
 
 namespace ValaCompiler.Widgets {
-    public class FilesListRow : Gtk.ListBoxRow{
-        public signal void toggle_file (string file_name);
-
+    public class FilesListRow : Gtk.ListBoxRow {
         public string file;
+        public bool compile_this_file;
 
         public Gtk.Box content;
         public Gtk.Image icon;
         public Gtk.Label file_title;
+        
+
 
         construct {
         }
 
         public FilesListRow (string incoming_file) {
             this.file = incoming_file;
+            compile_this_file = true;
             build_ui ();
         }
 
         public void build_ui (){
             this.tooltip_text = _("Click to toggle compiling");
+            this.activatable = true;
+            this.selectable = false;
+
 
             var event_box = new Gtk.EventBox ();
             content = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
@@ -62,10 +67,26 @@ namespace ValaCompiler.Widgets {
             this.margin_top = 0;
             this.margin_bottom = 3;
             this.halign = Gtk.Align.FILL;
+
+            this.activate.connect (() => {
+                //icon.set_from_icon_name ("user-busy", Gtk.IconSize.DND);
+            });
+
+
         }
 
         public string get_file_address () {
             return file;
+        }
+        
+        public void toggle () {
+            if (compile_this_file) {
+                icon.set_from_icon_name ("user-busy", Gtk.IconSize.DND);
+                compile_this_file = false;
+            } else {
+                icon.set_from_icon_name ("user-available", Gtk.IconSize.DND);
+                compile_this_file = true;
+            };
         }
     }
 }

@@ -21,5 +21,20 @@
             <summary>custom compiling options</summary>
             <description>the bottom entry text for compiling options.</description>
         </key>
+        <key name="gtk" type="b">
+            <default>true</default>
+            <summary>gtk+-3.0 package</summary>
+            <description>add --pkg=gtk+-3.0 to the valac command.</description>
+        </key>
+        <key name="show-c-warnings" type="b">
+            <default>false</default>
+            <summary>Show c compile warnings</summary>
+            <description>removes -X -w from valac, they silence c compile warnings.</description>
+        </key>
+        <key name="options-button" type="b">
+            <default>true</default>
+            <summary>Show options side pane</summary>
+            <description>In project page</description>
+        </key>
     </schema>
 </schemalist>

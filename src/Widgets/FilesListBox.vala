@@ -20,10 +20,11 @@ namespace ValaCompiler.Widgets {
         public ValaCompiler.Utils.FilesManager files_manager;
         public Widgets.ProjectPage project_page;
         public Widgets.FilesListRow row;
+        public List<Widgets.FilesListRow> row_list;
         public Gtk.Label file_title;
 
-        Gtk.ListBox files_list_box;
-        List<string> files;
+        public Gtk.ListBox files_list_box;
+        public List<string> files;
 
         construct {
         }
@@ -44,6 +45,7 @@ namespace ValaCompiler.Widgets {
                 files.append (item);
             }
             build_ui ();
+            populate_row_list ();
             show_files ();
         }
 
@@ -51,6 +53,7 @@ namespace ValaCompiler.Widgets {
             this.can_focus = false;
             //this.width_request = 300;
             this.margin = 5;
+            row_list = new List<Widgets.FilesListRow> ();
 
             var content = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             content.spacing = 5;
@@ -69,8 +72,13 @@ namespace ValaCompiler.Widgets {
 
             //FILES REGION
             files_list_box = new Gtk.ListBox ();
-            files_list_box.selection_mode = Gtk.SelectionMode.NONE;
+            files_list_box.selection_mode = Gtk.SelectionMode.BROWSE;
             files_list_box.activate_on_single_click = true;
+            files_list_box.row_activated.connect ((r) => {
+                var row = (Widgets.FilesListRow)r;
+                toggle_file (row);
+            });
+
 
             var files_scroll = new Gtk.ScrolledWindow (null, null);
             files_scroll.expand = true;
@@ -87,31 +95,54 @@ namespace ValaCompiler.Widgets {
             this.show_all();
         }
 
-        private void toggle_file () {
+        private void toggle_file (Widgets.FilesListRow row) {
         //TODO changing of green light to signify compile to a row && color red to signify compile error
+            row.toggle ();
         }
 
-        public void show_files () {
-            this.files_list_box.unselect_all ();
+        public void populate_row_list () {
             this.files.foreach ((item) => {
-                add_file (item);
+                row_list.append (new Widgets.FilesListRow (item));
+
             });
         }
 
-        public void add_file (string file) {
-            row = new ValaCompiler.Widgets.FilesListRow (file);
-            this.files_list_box.add (row);
-            row.show_all ();
+        public void show_files () {
+            row_list.foreach ((row) => {
+                files_list_box.add (row);
+            });
+
         }
+
+        public void clear_row_list () {
+            row_list.foreach ((item) => {
+                row_list.remove (item);
+            });
+        }
+
 
         public List<string> get_files () {
             List<string> files_to_be_sent = new List<string> ();
-            foreach (string item in files) {
-                files_to_be_sent.append (item);
+            string file_to_be_added = "";
+
+            foreach (var r in row_list) {
+                var row = (Widgets.FilesListRow)r;
+                if (row.compile_this_file) {
+                    file_to_be_added = row.file;
+                    //print (row.file + "\n");
+                    files_to_be_sent.append (file_to_be_added);
+                };
             };
+
+
             return files_to_be_sent;
             /*TODO Make it return a List Array of (1 & 0) that indicate whether a file at the same
             location is to be compiled (maybe by implementing FilesListRow.get_file_address ()??)*/
         }
     }
 }
+
+
+
+
+
