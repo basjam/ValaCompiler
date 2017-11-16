@@ -19,6 +19,7 @@ namespace ValaCompiler.Utils {
         private string location = null;
         public signal void start_project (string location);
         public signal void files_array_ready ();
+        public signal void compile_done ();
 
         public Utils.FileLister file_lister;
         public Utils.Files files;
@@ -41,6 +42,10 @@ namespace ValaCompiler.Utils {
                 this.files_array_ready ();
             });
 
+            valac = Utils.ValaC.get_instance ();
+            valac.compile_done.connect (() => {
+                this.compile_done ();
+            });
         }
 
         public void list_files (string location) {

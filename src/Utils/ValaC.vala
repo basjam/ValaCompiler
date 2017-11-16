@@ -73,7 +73,6 @@ namespace ValaCompiler.Utils {
         public bool process_line (IOChannel channel, IOCondition condition, string stream_name) {
             if (condition == IOCondition.HUP) {
                 if (stream_name == "stdout"){
-                    //compile done
                     compile_done();
                     //print ("ValaC: " + stream_name + " is done. \n");
                 };

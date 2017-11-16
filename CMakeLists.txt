@@ -47,6 +47,7 @@
         src/Utils/FilesManager.vala
         src/Utils/Files.vala
         src/Utils/ValaC.vala
+        src/Utils/AppTester.vala
         src/Widgets/FilesListBottomBar.vala
         src/Widgets/FilesListBox.vala
         src/Widgets/FilesListRow.vala

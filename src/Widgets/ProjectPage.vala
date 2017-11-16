@@ -75,7 +75,6 @@ namespace ValaCompiler.Widgets {
                 this.change_location ();
             });
             bottom_bar.compile.connect ((custom_options) => {
-                //TODO add a list array of (1 & 0) to indicate which files are to be compiled
                 List<string> files;
                 files_list_box = Widgets.FilesListBox.get_instance (false);
                 files_list_box.get_files ().foreach ((item) => {

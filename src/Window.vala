@@ -24,10 +24,11 @@ namespace ValaCompiler {
         private Widgets.ReportPage report_page;
         private Widgets.NavigationButton navigation_button;
         public Gtk.ToggleButton options_button;
+        public Gtk.Button test_button;
         public Gtk.Button report_button;
         public Utils.FilesManager files_manager;
+        public Utils.AppTester app_tester;
         public App app;
-
 
         public Window () {
         }
@@ -55,18 +56,33 @@ namespace ValaCompiler {
             navigation_button.clicked.connect (() => {
                 navigate_back ();
             });
+            navigation_button.tooltip_text = _("Welcome page");
             header.pack_start (navigation_button);
 
             options_button = new Gtk.ToggleButton ();
             options_button.active = settings.options_button;
             options_button.image = new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR);
+            options_button.tooltip_text = _("Show Options Pane");
             header.pack_end (options_button);
 
-            report_button = new Gtk.Button.with_label ("Report");
+            report_button = new Gtk.Button.with_label (_("Report"));
+            report_button.tooltip_text = _("Show Report");
             report_button.clicked.connect (() => {
                 show_report ();
             });
             header.pack_end (report_button);
+
+            test_button = new Gtk.Button.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR);
+            test_button.tooltip_text = _("Test the app");
+            test_button.clicked.connect (() => {
+                run_test_app ();
+            });
+            test_button.sensitive = report_page.test_available;
+            files_manager = Utils.FilesManager.get_instance ();
+            files_manager.compile_done.connect (() => {
+                test_button.sensitive = report_page.test_available;
+            });
+            header.pack_end (test_button);
 
             set_titlebar (header);
 
@@ -86,9 +102,10 @@ namespace ValaCompiler {
             navigation_button.hide ();
             report_button.hide ();
             options_button.hide ();
+            test_button.hide ();
 
             main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.NONE);
-            stdout.printf ("window: main_stack visible child is: " + main_stack.get_visible_child_name () + "\n");
+            //stdout.printf ("window: main_stack visible child is: " + main_stack.get_visible_child_name () + "\n");
 
             project_page.change_location.connect (() => {
                 files_manager = Utils.FilesManager.get_instance ();
@@ -105,6 +122,11 @@ namespace ValaCompiler {
                 project_page.show_side_pane (options_button.active);
                 settings.options_button = options_button.active;
                 //print ("Window: just changed project_page.toggle_options_pane to : " + project_page.toggle_options_pane.to_string () + "\n");
+            });
+
+            app_tester = Utils.AppTester.get_instance ();
+            app_tester.test_done.connect (() => {
+                test_button.sensitive = true;
             });
         }
 
@@ -151,19 +173,19 @@ namespace ValaCompiler {
             settings.project_location = project_location;
             //stdout.printf (settings.project_location);
             main_stack.set_visible_child_full ("project", Gtk.StackTransitionType.SLIDE_LEFT);
-            stdout.printf ("window: main_stack visible child is: " + main_stack.get_visible_child_name () + "\n");
+            navigation_button.tooltip_text = _("Welcome Page");
+            //stdout.printf ("window: main_stack visible child is: " + main_stack.get_visible_child_name () + "\n");
             //ProjectPage sidepane
-
         }
 
         public void navigate_back () {
-
             switch (main_stack.get_visible_child_name ()) {
                 case "project":
                     main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.SLIDE_RIGHT);
                     navigation_button.hide ();
                     options_button.hide ();
                     report_button.hide ();
+                    test_button.hide ();
                     files_manager = Utils.FilesManager.get_instance ();
                     files_manager.clear_files_array ();
                     welcome_page.refresh ();
@@ -173,6 +195,7 @@ namespace ValaCompiler {
 
                 case "report":
                     main_stack.set_visible_child_full ("project", Gtk.StackTransitionType.SLIDE_RIGHT);
+                    navigation_button.tooltip_text = _("Welcome Page");
                     report_button.show ();
                     options_button.show ();
                     break;
@@ -186,15 +209,30 @@ namespace ValaCompiler {
             files_manager.compile (files);
             options_button.hide ();
             report_button.hide ();
+            test_button.show ();
             report_page.clear_compile_report ();
             report_page.clear_test_report ();
+            report_page.test_available = false;
             main_stack.set_visible_child_full ("report", Gtk.StackTransitionType.SLIDE_LEFT);
+            navigation_button.tooltip_text = _("Project Page");
         }
 
         public void show_report () {
             main_stack.set_visible_child_full ("report", Gtk.StackTransitionType.SLIDE_LEFT);
+            navigation_button.tooltip_text = _("Project Page");
             report_button.hide ();
             options_button.hide ();
+            test_button.show ();
+        }
+
+        public void run_test_app () {
+            show_report ();
+            report_page.view_button.set_active (1); //view the test report
+            string project_location = settings.project_location;
+            app_tester = Utils.AppTester.get_instance ();
+            app_tester.test_app.begin (project_location);
+            report_page.test_report_string = "";
+            report_page.refresh ();
         }
     }
 }
