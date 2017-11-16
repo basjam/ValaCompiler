@@ -21,10 +21,9 @@ namespace ValaCompiler.Widgets {
 
         public Gtk.Box content;
         public Gtk.Image icon;
+        public Gtk.Image status_icon;
         public Gtk.Label file_title;
         
-
-
         construct {
         }
 
@@ -35,9 +34,9 @@ namespace ValaCompiler.Widgets {
         }
 
         public void build_ui (){
-            this.tooltip_text = _("Click to toggle compiling");
+            //this.tooltip_text = _("Click to toggle compiling");
             this.activatable = true;
-            this.selectable = false;
+            //this.selectable = false;
 
 
             var event_box = new Gtk.EventBox ();
@@ -50,12 +49,16 @@ namespace ValaCompiler.Widgets {
             event_box.add (content);
 
             icon = new Gtk.Image ();
-            icon.get_style_context ().add_class ("card");
-            icon.halign = Gtk.Align.CENTER;
             icon.tooltip_text = _("Click to toggle compiling");
             icon.set_from_icon_name ("user-available", Gtk.IconSize.DND);
 
             content.pack_end (icon, false, false, 0);
+
+            status_icon = new Gtk.Image ();  //to show compile warnings and errors.
+            status_icon.valign = Gtk.Align.CENTER;
+
+
+            content.pack_end (status_icon, false, false, 0);
 
             file_title = new Gtk.Label (this.file);
             file_title.xalign = 0;
@@ -78,7 +81,7 @@ namespace ValaCompiler.Widgets {
         public string get_file_address () {
             return file;
         }
-        
+
         public void toggle () {
             if (compile_this_file) {
                 icon.set_from_icon_name ("user-busy", Gtk.IconSize.DND);

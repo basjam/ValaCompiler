@@ -45,14 +45,10 @@ namespace ValaCompiler.Widgets {
             options_pane_stack.homogeneous = false;
             options_pane_stack.transition_duration = 250;
 
-            //options_pane_stack.width_request = 30;
-
             options_pane = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             options_pane.margin_right = 0;
-            //options_pane.get_style_context ().add_class (Granite.STYLE_CLASS_CARD);
 
             options_checkbutton_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 4);
-
 
             gtk_checkbutton = new Gtk.CheckButton.with_label ("gtk+-3.0");
             gtk_checkbutton.active = settings.gtk;
@@ -122,9 +118,6 @@ namespace ValaCompiler.Widgets {
                 files_list_box = Widgets.FilesListBox.get_instance (true);
                 files_list_box.populate (files_manager.get_files_array ());
                 middle_box.pack_start (files_list_box, true, true, 5);
-
-                //options_pane.get_preferred_width (out preferred_width, out nat_width);
-                //print ("pref: " + preferred_width.to_string () + ".\nnat: " + nat_width.to_string () + "\n");
                 this.show_all ();
             });
         }
@@ -147,10 +140,7 @@ namespace ValaCompiler.Widgets {
 
                 options_pane.hide ();
                 options_pane_stack.width_request = 0;
-                //print (options_pane_stack.width_request.to_string () + " vs " + options_pane_stack.get_allocated_width ().to_string () + "\n");
-                //print (options_pane_stack.get_resize_mode ().to_string () + "\n");
             };
-
         }
     }
 }

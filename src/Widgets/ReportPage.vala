@@ -17,21 +17,21 @@
 namespace ValaCompiler.Widgets {
     public class ReportPage : Gtk.Box {
 
-        public Gtk.Stack report_stack;
-        public Gtk.TextView compile_report;
-        public Gtk.TextView test_report;
-        public string compile_report_string;
-        public string test_report_string;
-        public Granite.Widgets.ModeButton view_button;
-        public Utils.ValaC valac;
         public Utils.AppTester app_tester;
-        public bool test_available;
         public Gtk.Box bottom_box;
         public Gtk.Button clear_button;
         public string clear_target;
+        public Gtk.TextView compile_report;
+        public string compile_report_string;
+        public Gtk.Stack report_stack;
+        public bool test_available;
+        public Gtk.TextView test_report;
+        public string test_report_string;
         public Gtk.Button undo_button;
         public bool undo_chance_compile;
         public bool undo_chance_test;
+        public Utils.ValaC valac;
+        public Granite.Widgets.ModeButton view_button;
 
         construct {
             this.orientation = Gtk.Orientation.VERTICAL;
@@ -56,6 +56,7 @@ namespace ValaCompiler.Widgets {
             test_report = new Gtk.TextView ();
             test_report.monospace = true;
             test_report.editable = false;
+            test_report.wrap_mode = Gtk.WrapMode.WORD;
             test_report.buffer.text = test_report_string;
 
             var compile_scroll = new Gtk.ScrolledWindow (null, null);
@@ -75,13 +76,13 @@ namespace ValaCompiler.Widgets {
             //Setup bottom_box
             clear_target = "compile";
             clear_button = new Gtk.Button.from_icon_name ("edit-clear", Gtk.IconSize.LARGE_TOOLBAR);
-            clear_button.tooltip_text = _("Clear Compile Report");
+            clear_button.tooltip_text = _("Clear Report");
             clear_button.sensitive = target_contains_text ();
 
             undo_chance_test = false;
             undo_chance_compile = false;
             undo_button = new Gtk.Button.from_icon_name ("edit-undo", Gtk.IconSize.LARGE_TOOLBAR);
-            undo_button.tooltip_text = _("Undo Last Compile Clear");
+            undo_button.tooltip_text = _("Undo Last Clear");
             if (undo_chance_compile) {
                 undo_button.sensitive = true;
             } else {
@@ -102,10 +103,10 @@ namespace ValaCompiler.Widgets {
                 switch (view_button.selected) {
                     case 0:
                         report_stack.set_visible_child_full ("compile", Gtk.StackTransitionType.SLIDE_RIGHT);
-                        clear_button.tooltip_text = _("Clear Compile Report");
-                        clear_button.sensitive = target_contains_text ();
+                        clear_button.tooltip_text = _("Clear Report");
                         clear_target = "compile";
-                        undo_button.tooltip_text = _("Undo Last Compile Clear");
+                        clear_button.sensitive = target_contains_text ();
+                        undo_button.tooltip_text = _("Undo Last Clear");
                         if (undo_chance_compile) {
                             undo_button.sensitive = true;
                         } else {
@@ -114,10 +115,10 @@ namespace ValaCompiler.Widgets {
                         break;
                     case 1:
                         report_stack.set_visible_child_full ("test", Gtk.StackTransitionType.SLIDE_LEFT);
-                        clear_button.tooltip_text = _("Clear Test Report");
-                        clear_button.sensitive = target_contains_text ();
+                        clear_button.tooltip_text = _("Clear Report");
                         clear_target = "test";
-                        undo_button.tooltip_text = _("Undo Last Test Clear");
+                        clear_button.sensitive = target_contains_text ();
+                        undo_button.tooltip_text = _("Undo Last Clear");
                         if (undo_chance_test) {
                             undo_button.sensitive = true;
                         } else {
@@ -141,6 +142,7 @@ namespace ValaCompiler.Widgets {
                 if (compile_report.buffer.text == "") {
                     compile_report_string = ""; // removes the undo chance
                 };
+                compile_report_string += " - ";
                 compile_report_string += line;
                 undo_chance_compile =false;
                 undo_button.sensitive = undo_chance_compile;
@@ -153,6 +155,7 @@ namespace ValaCompiler.Widgets {
                 if (test_report.buffer.text == "") {
                     test_report_string = "";  // removes the undo chance
                 };
+                test_report_string += " - ";
                 test_report_string += line;
                 undo_chance_test = false;
                 undo_button.sensitive = undo_chance_test;

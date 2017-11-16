@@ -63,8 +63,8 @@ namespace ValaCompiler.Widgets {
             //event_box.button_press_event.connect (show_context_menu); //need to check this
 
             //TOP TITLE REGION;
-            file_title = new Gtk.Label (_("Files"));
-            file_title.tooltip_text = _("Highlight the files you wish to compile");
+            file_title = new Gtk.Label (_("Files - Click To Exclude Files"));
+            file_title.tooltip_text = _("Toggle files wish not to compile");
             file_title.halign = Gtk.Align.START;
             file_title.margin_left = 12;
             file_title.ellipsize = Pango.EllipsizeMode.END;
