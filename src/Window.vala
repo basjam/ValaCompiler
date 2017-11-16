@@ -214,6 +214,7 @@ namespace ValaCompiler {
             report_page.clear_test_report ();
             report_page.test_available = false;
             main_stack.set_visible_child_full ("report", Gtk.StackTransitionType.SLIDE_LEFT);
+            report_page.view_button.set_active (0);
             navigation_button.tooltip_text = _("Project Page");
         }
 

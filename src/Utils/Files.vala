@@ -37,7 +37,7 @@ namespace ValaCompiler.Utils {
             List<string> cleaned_files_array = new List<string> ();
             files_lister = Utils.FileLister.get_instance ();
             files_lister.found_a_file.connect ((file) => {
-                add_file (file);  
+                add_file (file);
             });
 
             files_lister.listing_files_done.connect (() => {
@@ -66,7 +66,6 @@ namespace ValaCompiler.Utils {
 
         public void clean_up_list () {
             string parent_folder = "";
-            int count = 0;
             string item_temp = "";
             List<string> temp1_files_array = new List<string> ();
             List<string> temp2_files_array = new List<string> ();

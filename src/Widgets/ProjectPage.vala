@@ -59,7 +59,7 @@ namespace ValaCompiler.Widgets {
             gtk_checkbutton.get_style_context ().add_class (Granite.STYLE_CLASS_CARD);
             options_checkbutton_box.pack_end (gtk_checkbutton, false, false, 2);
 
-            show_c_warnings_checkbutton = new Gtk.CheckButton.with_label ("Show c warnings");
+            show_c_warnings_checkbutton = new Gtk.CheckButton.with_label ("Report C Warnings");
             show_c_warnings_checkbutton.active = settings.show_c_warnings;
             options_checkbutton_box.pack_end (show_c_warnings_checkbutton, false, false, 3);
 
