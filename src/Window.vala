@@ -82,7 +82,7 @@ namespace ValaCompiler {
             files_manager.compile_done.connect (() => {
                 test_button.sensitive = report_page.test_available;
             });
-            header.pack_end (test_button);
+            header.pack_start (test_button);
 
             set_titlebar (header);
 

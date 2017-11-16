@@ -132,16 +132,16 @@ namespace ValaCompiler.Widgets {
             valac = Utils.ValaC.get_instance ();
             valac.compile_line_out.connect ((line) => {
                 //check for test button
-                if (line.strip ().contains ("Compilation succeeded")) {
+                if (line.contains ("Compilation succeeded")) {
                     test_available = true;
-                } else if (line.strip ().contains ("Compilation failed")) {
+                } else if (line.contains ("Compilation failed")) {
                     test_available = false;
                 };
 
                 if (compile_report.buffer.text == "") {
                     compile_report_string = ""; // removes the undo chance
                 };
-                compile_report_string += line.to_string ();
+                compile_report_string += line;
                 undo_chance_compile =false;
                 undo_button.sensitive = undo_chance_compile;
                 clear_button.sensitive = target_contains_text ();
@@ -153,7 +153,7 @@ namespace ValaCompiler.Widgets {
                 if (test_report.buffer.text == "") {
                     test_report_string = "";  // removes the undo chance
                 };
-                test_report_string += line.to_string ();
+                test_report_string += line;
                 undo_chance_test = false;
                 undo_button.sensitive = undo_chance_test;
                 clear_button.sensitive = target_contains_text ();

@@ -22,14 +22,12 @@ namespace ValaCompiler {
 
         construct {
             program_name = "ValaCompiler";
-            exec_name = "com.github.basjam.valacompiler";
-            application_id = "com.github.basjam.valacompiler";
+            exec_name = "com.github.basjam.ValaCompiler";
+            application_id = "com.github.basjam.ValaCompiler";
         }
 
         public App () {
-            Gtk.Settings.get_default ().gtk_application_prefer_dark_theme = true;
             settings = new Settings ();
-            set_default ();
         }
 
         private static App app;
@@ -41,9 +39,7 @@ namespace ValaCompiler {
 
         public override void activate () {
             if (window == null) {
-
                 settings.project_location = "";
-
                 window = new Window ();
                 window.application = this;
                 window.title = program_name;
@@ -53,7 +49,6 @@ namespace ValaCompiler {
 }
 
 public static void main (string[] args){
-
     var app = ValaCompiler.App.get_instance ();
     app.run (args);
  }
