@@ -23,7 +23,7 @@ namespace ValaCompiler.Widgets {
         public Gtk.Image icon;
         public Gtk.Image status_icon;
         public Gtk.Label file_title;
-        
+
         construct {
         }
 
@@ -41,7 +41,7 @@ namespace ValaCompiler.Widgets {
 
             var event_box = new Gtk.EventBox ();
             content = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-            content.margin = 12;
+            content.margin = 6;
             content.spacing = 12;
 
             content.margin_top = content.margin_bottom = 6;
@@ -54,15 +54,15 @@ namespace ValaCompiler.Widgets {
 
             content.pack_end (icon, false, false, 0);
 
-            status_icon = new Gtk.Image ();  //to show compile warnings and errors.
+            status_icon = new Gtk.Image ();  //TODO to show compile warnings and errors.
             status_icon.valign = Gtk.Align.CENTER;
+            status_icon.set_from_icon_name ("dialog-warning", Gtk.IconSize.SMALL_TOOLBAR);
 
-
-            content.pack_end (status_icon, false, false, 0);
+            //content.pack_start (status_icon, false, false, 0);
 
             file_title = new Gtk.Label (this.file);
             file_title.xalign = 0;
-            file_title.ellipsize = Pango.EllipsizeMode.START;
+            file_title.ellipsize = Pango.EllipsizeMode.START; //better to show (..gets/RandomWidget.vala) than (Widgets/Ra...)
             content.pack_start (file_title, true, true, 0);
 
             this.add (event_box);

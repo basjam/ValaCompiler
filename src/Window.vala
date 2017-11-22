@@ -26,7 +26,9 @@ namespace ValaCompiler {
         public Gtk.ToggleButton options_button;
         public Gtk.Button test_button;
         public Gtk.Button report_button;
+        public Gtk.Button kill_test_button;
         public Utils.FilesManager files_manager;
+        public Utils.ValaC valac;
         public Utils.AppTester app_tester;
         public App app;
 
@@ -73,16 +75,36 @@ namespace ValaCompiler {
             header.pack_end (report_button);
 
             test_button = new Gtk.Button.from_icon_name ("media-playback-start", Gtk.IconSize.LARGE_TOOLBAR);
-            test_button.tooltip_text = _("Test the app");
+            test_button.tooltip_text = _("Test The App");
             test_button.clicked.connect (() => {
                 run_test_app ();
             });
             test_button.sensitive = report_page.test_available;
-            files_manager = Utils.FilesManager.get_instance ();
-            files_manager.compile_done.connect (() => {
+            valac = Utils.ValaC.get_instance ();
+            valac.compile_done.connect (() => {
                 test_button.sensitive = report_page.test_available;
             });
             header.pack_start (test_button);
+
+            kill_test_button = new Gtk.Button.from_icon_name ("media-playback-stop", Gtk.IconSize.LARGE_TOOLBAR);
+            kill_test_button.tooltip_text = _("Kill TEST");
+            kill_test_button.clicked.connect (() => {
+                app_tester = Utils.AppTester.get_instance ();
+                app_tester.kill_test ();
+                if (main_stack.get_visible_child_name () == "welcome") {
+                    kill_test_button.hide ();
+                };
+            });
+
+            app_tester = Utils.AppTester.get_instance ();
+            app_tester.kill_test_signal.connect ((kill_report) => {
+                kill_test_button.sensitive = app_tester.check_test_running ();
+                report_page.test_report_string += kill_report;
+                report_page.refresh_test ();
+            });
+
+            header.pack_start (kill_test_button);
+
 
             set_titlebar (header);
 
@@ -103,6 +125,8 @@ namespace ValaCompiler {
             report_button.hide ();
             options_button.hide ();
             test_button.hide ();
+            kill_test_button.hide ();
+            kill_test_button.sensitive = false;
 
             main_stack.set_visible_child_full ("welcome", Gtk.StackTransitionType.NONE);
             //stdout.printf ("window: main_stack visible child is: " + main_stack.get_visible_child_name () + "\n");
@@ -191,6 +215,11 @@ namespace ValaCompiler {
                     welcome_page.refresh ();
                     app = App.get_instance ();
                     header.title = app.program_name;
+
+                    app_tester = Utils.AppTester.get_instance ();
+                    if (!app_tester.check_test_running ()) {
+                        kill_test_button.hide ();
+                    }
                     break;
 
                 case "report":
@@ -205,6 +234,7 @@ namespace ValaCompiler {
         }
 
         public void compile (List<string> files) {
+            report_page.compile_failed = false;
             files_manager = Utils.FilesManager.get_instance ();
             files_manager.compile (files);
             options_button.hide ();
@@ -228,12 +258,14 @@ namespace ValaCompiler {
 
         public void run_test_app () {
             show_report ();
+            kill_test_button.show ();
+            kill_test_button.sensitive = true;
             report_page.view_button.set_active (1); //view the test report
             string project_location = settings.project_location;
             app_tester = Utils.AppTester.get_instance ();
             app_tester.test_app.begin (project_location);
             report_page.test_report_string = "";
-            report_page.refresh ();
+            report_page.refresh_test ();
         }
     }
 }

@@ -52,7 +52,7 @@ namespace ValaCompiler.Widgets {
         public void build_ui () {
             this.can_focus = false;
             //this.width_request = 300;
-            this.margin = 5;
+            this.margin = 6;
             row_list = new List<Widgets.FilesListRow> ();
 
             var content = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
@@ -65,8 +65,7 @@ namespace ValaCompiler.Widgets {
             //TOP TITLE REGION;
             file_title = new Gtk.Label (_("Files - Click To Exclude Files"));
             file_title.tooltip_text = _("Toggle files wish not to compile");
-            file_title.halign = Gtk.Align.START;
-            file_title.margin_left = 12;
+            file_title.halign = Gtk.Align.CENTER;
             file_title.ellipsize = Pango.EllipsizeMode.END;
             event_box.add (file_title);
 

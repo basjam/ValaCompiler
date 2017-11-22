@@ -21,6 +21,7 @@ namespace ValaCompiler.Widgets {
         public Gtk.Box bottom_box;
         public Gtk.Button clear_button;
         public string clear_target;
+        public bool compile_failed;
         public Gtk.TextView compile_report;
         public string compile_report_string;
         public Gtk.Stack report_stack;
@@ -31,11 +32,14 @@ namespace ValaCompiler.Widgets {
         public bool undo_chance_compile;
         public bool undo_chance_test;
         public Utils.ValaC valac;
+        public Gtk.ScrolledWindow compile_scroll;
+        public Gtk.ScrolledWindow test_scroll;
+
         public Granite.Widgets.ModeButton view_button;
 
         construct {
             this.orientation = Gtk.Orientation.VERTICAL;
-            this.spacing = 2;
+            this.spacing = 12;
             this.margin = 6;
 
             //Granite.Widgets.ModeButton setup
@@ -51,21 +55,19 @@ namespace ValaCompiler.Widgets {
             compile_report = new Gtk.TextView ();
             compile_report.monospace = true;
             compile_report.editable = false;
-            compile_report.buffer.text = compile_report_string;
 
             test_report = new Gtk.TextView ();
             test_report.monospace = true;
             test_report.editable = false;
             test_report.wrap_mode = Gtk.WrapMode.WORD;
-            test_report.buffer.text = test_report_string;
 
-            var compile_scroll = new Gtk.ScrolledWindow (null, null);
+            compile_scroll = new Gtk.ScrolledWindow (null, null);
             compile_scroll.add (compile_report);
 
             var compile_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 2);
             compile_box.pack_start (compile_scroll, true, true, 0);
 
-            var test_scroll = new Gtk.ScrolledWindow (null, null);
+            test_scroll = new Gtk.ScrolledWindow (null, null);
             test_scroll.add (test_report);
 
             report_stack = new Gtk.Stack ();
@@ -130,13 +132,18 @@ namespace ValaCompiler.Widgets {
             });
 
             test_available = false;
+            compile_failed = false;
             valac = Utils.ValaC.get_instance ();
+            valac.compile_done.connect (() => {
+                if (!compile_failed) {
+                    test_available = true;
+                };
+            });
+
             valac.compile_line_out.connect ((line) => {
                 //check for test button
-                if (line.contains ("Compilation succeeded")) {
-                    test_available = true;
-                } else if (line.contains ("Compilation failed")) {
-                    test_available = false;
+                if (line.contains ("Compilation failed")) {
+                    compile_failed = true;
                 };
 
                 if (compile_report.buffer.text == "") {
@@ -147,7 +154,7 @@ namespace ValaCompiler.Widgets {
                 undo_chance_compile =false;
                 undo_button.sensitive = undo_chance_compile;
                 clear_button.sensitive = target_contains_text ();
-                refresh ();
+                refresh_compile ();
             });
 
             app_tester = Utils.AppTester.get_instance ();
@@ -160,7 +167,7 @@ namespace ValaCompiler.Widgets {
                 undo_chance_test = false;
                 undo_button.sensitive = undo_chance_test;
                 clear_button.sensitive = target_contains_text ();
-                refresh ();
+                refresh_test ();
             });
 
             clear_button.clicked.connect (() => {
@@ -210,27 +217,30 @@ namespace ValaCompiler.Widgets {
             return false; //to be able to compile
         }
 
-        public void refresh () {
-            test_report.buffer.text = test_report_string;
-            compile_report.buffer.text = compile_report_string;
-        }
-
         public void refresh_compile () {
+            Gtk.TextIter iter;
             compile_report.buffer.text = compile_report_string;
+            compile_report.buffer.get_end_iter (out iter);
+            compile_report.scroll_to_iter (iter, 0, true ,0 ,0);
         }
 
         public void refresh_test () {
+            Gtk.TextIter iter;
             test_report.buffer.text = test_report_string;
+            test_report.buffer.get_end_iter (out iter);
+            test_report.scroll_to_iter (iter, 0, true ,0 ,0);
+
         }
 
         public void clear_compile_report () {
             compile_report_string = "";
-            refresh ();
+            refresh_compile ();
         }
 
         public void clear_test_report () {
             test_report_string = "";
-            refresh ();
+            refresh_test ();
         }
     }
 }
+

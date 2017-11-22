@@ -50,9 +50,12 @@ namespace ValaCompiler.Widgets {
 
             options_checkbutton_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 4);
 
+            var options_label = new Gtk.Label (_("Options"));
+            options_checkbutton_box.pack_start (options_label, false, false,0);
+            options_checkbutton_box.pack_start (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), false, false, 0);
+
             gtk_checkbutton = new Gtk.CheckButton.with_label ("gtk+-3.0");
             gtk_checkbutton.active = settings.gtk;
-            gtk_checkbutton.get_style_context ().add_class (Granite.STYLE_CLASS_CARD);
             options_checkbutton_box.pack_end (gtk_checkbutton, false, false, 2);
 
             show_c_warnings_checkbutton = new Gtk.CheckButton.with_label ("Report C Warnings");
