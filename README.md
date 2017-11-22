@@ -9,6 +9,8 @@ you'll need the following dependencies:
 * libgranite-dev
 * libgtk-3-dev
 
+It is recommended to create a clean build environment
+
     mkdir build
     cd build/
 
@@ -19,7 +21,7 @@ Run 'cmake' to configure the build environment and then 'make' to build
 
 To install, use 'make install'
 
-  sudo make install
+    sudo make install
 
 ## Precautions
 
