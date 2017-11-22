@@ -9,13 +9,13 @@ you'll need the following dependencies:
 * libgranite-dev
 * libgtk-3-dev
 
-  mkdir build
-  cd build/
+    mkdir build
+    cd build/
 
 Run 'cmake' to configure the build environment and then 'make' to build
 
-  cmake -DCMAKE_INSTALL_PREFIX=/usr ..
-  make
+    cmake -DCMAKE_INSTALL_PREFIX=/usr ..
+    make
 
 To install, use 'make install'
 
