@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Copyright 2017 Your Name <you@email.com> -->
+<!-- Copyright 2017 Your Name <basjam@gmail.com> -->
 <component type="desktop">
-  <id>com.github.basjam.ValaCompiler.desktop</id>
-  <metadata_license>CC0</metadata_license>
-  <name>ValaCompiler</name>
-  <summary>A Simple GUI valac</summary>
-  <description>
-    <p>A simple GUI for valac that is aimed at replacing the terminal use in vala development.</p>
-  </description>
+    <id>com.github.basjam.ValaCompiler.desktop</id>
+    <metadata_license>CC0</metadata_license>
+    <name>ValaCompiler</name>
+    <summary>A Simple GUI for valac</summary>
+    <description>
+        <p>A simple GUI for valac that is aimed at replacing the terminal use in vala development.</p>
+    </description>
+    <provides>
+        <binary>com.github.basjam.ValaCompiler</binary>
+    </provides>
+    <developer_name>Basem Kheyar</developer_name>
+    <url type="homepage">https://github.com/basjam/ValaCompiler/</url>
+    <url type="bugtracker">https://github.com/basjam/ValaCompiler/issues</url>
+    <releases>
+        <release version="0.1.0" date="2017-11-22">
+            <description>
+                <p>Release: Initial Release</p>
+            </description>
+        </release>
+    </releases>
+    <custom>
+        <value key="x-appcenter-color-primary">#64666e</value>
+    </custom>
 </component>
