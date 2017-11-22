@@ -1,0 +1,16 @@
+Source: com.github.basjam.ValaCompiler
+Section: x11
+Priority: optional
+Maintainer: Basem Kheyar <Basjam@gmail.com>
+Build-Depends: cmake (>= 2.8),
+               libgranite-dev,
+               debhelper (>= 9),
+               libgtk-3-dev,
+               valac (>= 0.36)
+Standards-Version: 3.9.3
+
+Package: com.github.basjam.ValaCompiler
+Architecture: any
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Vala Compiler
+ A GUI for the command line valac.
