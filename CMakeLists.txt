@@ -1,5 +1,5 @@
 # project name
-project (com.github.basjam.ValaCompiler)
+project (com.github.basjam.valacompiler)
 
 # the oldest stable cmake version we support
 cmake_minimum_required (VERSION 2.6)
@@ -12,8 +12,8 @@ list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/src)
 set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 
 # what to call that directory where we install data too
-set (PKGDATADIR "${DATADIR}/com.github.basjam.ValaCompiler")
-set (EXEC_NAME "com.github.basjam.ValaCompiler")
+set (PKGDATADIR "${DATADIR}/com.github.basjam.valacompiler")
+set (EXEC_NAME "com.github.basjam.valacompiler")
 set (RELEASE_NAME "A GUI for valac.")
 set (VERSION "0.1")
 set (VERSION_INFO "functioning compiler")

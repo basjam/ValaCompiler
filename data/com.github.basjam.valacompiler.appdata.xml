@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2017 Your Name <basjam@gmail.com> -->
 <component type="desktop">
-    <id>com.github.basjam.ValaCompiler.desktop</id>
+    <id>com.github.basjam.valacompiler.desktop</id>
     <metadata_license>CC0</metadata_license>
     <name>ValaCompiler</name>
     <summary>A Simple GUI for valac</summary>

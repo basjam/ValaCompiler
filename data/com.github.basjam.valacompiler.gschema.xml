@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-    <schema id="com.github.basjam.ValaCompiler" path="/com/github/basjam/ValaCompiler/" gettext-domain="ValaCompiler">
+    <schema id="com.github.basjam.valacompiler" path="/com/github/basjam/valacompiler/" gettext-domain="ValaCompiler">
         <key name="last-folder" type="s">
             <default>""</default>
             <summary>Last source folder used</summary>
