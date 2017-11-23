@@ -1,5 +1,6 @@
-valacompiler (0.1) precise; urgency=low
+com.github.basjam.valacompiler (0.1.0) xenial; urgency=low
+[NEW]
+ * Initial Release
 
-  * Initial Release.
+ -- Basem Kheyar <basjam@gmail.com>  Thu, 23 Nov 2017 15:44:39 -0500
 
- -- Basem Kheyar <basjam@gmail.com>  Tue, 22 Nov 2017 04:53:39 -0500
