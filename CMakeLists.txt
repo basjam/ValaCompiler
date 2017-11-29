@@ -13,6 +13,7 @@ set (DATADIR "${CMAKE_INSTALL_PREFIX}/share")
 
 # what to call that directory where we install data too
 set (PKGDATADIR "${DATADIR}/com.github.basjam.valacompiler")
+
 set (EXEC_NAME "com.github.basjam.valacompiler")
 set (RELEASE_NAME "A GUI for valac.")
 set (VERSION "0.1")
@@ -25,7 +26,6 @@ find_package(PkgConfig)
 pkg_check_modules(DEPS REQUIRED gtk+-3.0 granite)
 
 add_definitions(${DEPS_CFLAGS})
-
 add_definitions (-w)
 link_libraries(${DEPS_LIBRARIES})
 link_directories(${DEPS_LIBRARY_DIRS})
@@ -35,7 +35,7 @@ find_package(Vala REQUIRED)
 # make sure we use vala
 include(ValaVersion)
 # make sure it's the desired version of vala
-ensure_vala_version("0.16" MINIMUM)
+ensure_vala_version("0.26.0" MINIMUM)
 
 # files we want to compile
 include(ValaPrecompile)
@@ -75,10 +75,6 @@ add_subdirectory (po)
 
 #TESTING LINES FROM ELEMENTARY/VIDEOS
 add_subdirectory (data)
-
-# add cmake folder
-list (APPEND CMAKE_MODULE_PATH ${CMAKE_PROJECT_DIR}/cmake)
-
 
 
 
