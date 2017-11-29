@@ -10,19 +10,33 @@
         <p>A simple GUI for valac that is aimed at replacing the terminal use in vala development.</p>
     </description>
     <provides>
-        <binary>com.github.basjam.ValaCompiler</binary>
+        <binary>com.github.basjam.valacompiler</binary>
     </provides>
     <developer_name>Basem Kheyar</developer_name>
     <url type="homepage">https://github.com/basjam/ValaCompiler/</url>
     <url type="bugtracker">https://github.com/basjam/ValaCompiler/issues</url>
+    <update_contact>basjam@gmail.com</update_contact>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://raw.githubusercontent.com/basjam/ValaCompiler/master/screenshots/ValaCompiler-ProjectPage(ScreenShot).png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/basjam/ValaCompiler/master/screenshots/ValaCompiler-CompilerReport(ScreenShot).png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/basjam/ValaCompiler/master/screenshots/ValaCompiler-TestReport(ScreenShot).png</image>
+        </screenshot>
+    </screenshots>
     <releases>
-        <release version="0.1.0" date="2017-11-22">
+        <release version="0.1.10" date="2017-11-29">
             <description>
                 <p>Release: Initial Release</p>
             </description>
         </release>
     </releases>
     <custom>
-        <value key="x-appcenter-color-primary">#64666e</value>
+        <value key="x-appcenter-color-primary">#3f4149</value>
+        <value key="x-appcenter-color-primary-text">#ffffff</value>
+        <value key="x-appcenter-suggested-price">1</value>
     </custom>
 </component>
