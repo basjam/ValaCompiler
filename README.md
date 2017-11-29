@@ -1,6 +1,21 @@
 # ValaCompiler
 A simple GUI for the command line valac.
 
+## What the application does
+1-Select your project source folder.
+
+2-Scan the folder for valac compilable files and view them in a toggle list.
+
+3-Modify the compile instructions by adding user selected options (eg:- pkg=gtk+3.0 pkg=granite .....).
+
+4-Compile by using the command line (valac) + toggled files + options from step 3 + output a test file (TEST) in the source folder.
+
+5-Live report compile output.
+
+6-Test run the output file (TEST).
+
+7-Live report the test run output.
+
 ## Building and Installation
 
 you'll need the following dependencies:
