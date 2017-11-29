@@ -76,5 +76,9 @@ add_subdirectory (po)
 #TESTING LINES FROM ELEMENTARY/VIDEOS
 add_subdirectory (data)
 
+# add cmake folder
+list (APPEND CMAKE_MODULE_PATH ${CMAKE_PROJECT_DIR}/cmake)
+
+
 
 
