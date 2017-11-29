@@ -1,6 +1,8 @@
 # ValaCompiler
 A simple GUI for the command line valac.
 
+![Screenshot](screenshots/ValaCompiler-ProjectPage(ScreenShot).png)
+
 ## What the application does
 1-Select your project source folder.
 
