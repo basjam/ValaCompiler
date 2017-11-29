@@ -22,7 +22,7 @@ set (VERSION_INFO "functioning compiler")
 find_package(PkgConfig)
 
 # now let's actually check for the required dependencies
-pkg_check_modules(DEPS REQUIRED gtk+-3.0 granite vala)
+pkg_check_modules(DEPS REQUIRED gtk+-3.0 granite)
 
 add_definitions(${DEPS_CFLAGS})
 
