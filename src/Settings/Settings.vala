@@ -24,7 +24,7 @@ public class ValaCompiler.Settings : Granite.Services.Settings {
     public bool  options_button {get; set;}
 
     public Settings () {
-    base ("com.github.basjam.ValaCompiler");
+    base ("com.github.basjam.valacompiler");
     }
  }
 
