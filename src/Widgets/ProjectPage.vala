@@ -56,11 +56,11 @@ namespace ValaCompiler.Widgets {
 
             gtk_checkbutton = new Gtk.CheckButton.with_label ("gtk+-3.0");
             gtk_checkbutton.active = settings.gtk;
-            options_checkbutton_box.pack_end (gtk_checkbutton, false, false, 2);
+            options_checkbutton_box.pack_start (gtk_checkbutton, false, false, 2);
 
             show_c_warnings_checkbutton = new Gtk.CheckButton.with_label ("Report C Warnings");
             show_c_warnings_checkbutton.active = settings.show_c_warnings;
-            options_checkbutton_box.pack_end (show_c_warnings_checkbutton, false, false, 3);
+            options_checkbutton_box.pack_start (show_c_warnings_checkbutton, false, false, 3);
 
             options_pane.pack_start (options_checkbutton_box, true, true, 3);
             var nothing_grid = new Gtk.Grid ();
