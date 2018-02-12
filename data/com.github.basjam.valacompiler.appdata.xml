@@ -28,7 +28,7 @@
         </screenshot>
     </screenshots>
     <releases>
-        <release version="0.1.12" date="2018-02-12">
+        <release version="0.1.13" date="2018-02-12">
             <description>
                 <ul>
                 <li>Minor UI improvements</li>
@@ -46,6 +46,6 @@
     <custom>
         <value key="x-appcenter-color-primary">#3f4149</value>
         <value key="x-appcenter-color-primary-text">#ffffff</value>
-        <value key="x-appcenter-suggested-price">1</value>
+        <value key="x-appcenter-suggested-price">0</value>
     </custom>
 </component>

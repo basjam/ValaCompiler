@@ -1,4 +1,4 @@
-com.github.basjam.valacompiler (0.1.12) stable; urgency=low
+com.github.basjam.valacompiler (0.1.13) stable; urgency=low
 [NEW]
  * Minor UI improvements
  * Add granite checkbutton
