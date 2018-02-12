@@ -55,6 +55,7 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/Widgets/ProjectPage.vala
     src/Widgets/WelcomePage.vala
     src/Widgets/ReportPage.vala
+    src/Widgets/SettingsSidebar.vala
 
 # tell what libraries to use when compiling
 PACKAGES

@@ -268,4 +268,4 @@ namespace ValaCompiler {
             report_page.refresh_test ();
         }
     }
-}
+ }

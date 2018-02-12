@@ -20,6 +20,7 @@ public class ValaCompiler.Settings : Granite.Services.Settings {
     public string[] valac_options {get; set;}
     public string custom_compile_options {get; set;}
     public bool gtk {get; set;}
+    public bool granite {get; set;}
     public bool show_c_warnings {get; set;}
     public bool  options_button {get; set;}
 
