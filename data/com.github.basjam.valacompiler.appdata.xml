@@ -28,7 +28,16 @@
         </screenshot>
     </screenshots>
     <releases>
-        <release version="0.1.10" date="2017-11-29">
+        <release version="0.1.12" date="2018-02-12">
+            <description>
+                <ul>
+                <li>Minor UI improvements</li>
+                <li>Add granite checkbutton</li>
+                <li>Fixed bug #14. Files marked as executable can now be listed by the app</li>
+                </ul>
+            </description>
+        </release>
+        <release version="0.1.11" date="2017-11-29">
             <description>
                 <p>Release: Initial Release</p>
             </description>
