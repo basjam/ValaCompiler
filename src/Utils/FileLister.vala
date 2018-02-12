@@ -33,7 +33,7 @@ namespace ValaCompiler.Utils {
         public async void scan_files (string location) {
             //stdout.printf ("check: begin scan_files \n");
             try {
-                string[] spawn_args = {"ls", "-B", "-R", "-F"};
+                string[] spawn_args = {"ls", "-B", "-R", "--file-type"};
                 string[] spawn_env = Environ.get ();
                 Pid child_pid;
 
