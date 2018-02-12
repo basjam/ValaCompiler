@@ -20,15 +20,8 @@ namespace ValaCompiler.Widgets {
         public ValaCompiler.Utils.FilesManager files_manager;
         public Gtk.Box middle_box;
         public Widgets.BottomBar bottom_bar;
-        public Gtk.Box options_pane;
-        public Gtk.CheckButton gtk_checkbutton;
-        public Gtk.Box options_checkbutton_box;
-        public Gtk.CheckButton granite_checkbutton;
-        public Gtk.Label options_label;
-        public Gtk.CheckButton show_c_warnings_checkbutton;
-        public bool toggle_options_pane;
         public Window window;
-        public Gtk.Stack options_pane_stack;
+        public Widgets.SettingsSidebar settings_sidebar;
 
         public signal void change_location ();
         public signal void compile (List<string> files);
@@ -39,35 +32,9 @@ namespace ValaCompiler.Widgets {
 
         construct {
             middle_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
-
-            options_pane_stack = new Gtk.Stack ();
-            options_pane_stack.set_transition_type (Gtk.StackTransitionType.SLIDE_LEFT_RIGHT);
-            options_pane_stack.homogeneous = false;
-            options_pane_stack.transition_duration = 250;
-
-            options_pane = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-            options_pane.margin_right = 0;
-
-            options_checkbutton_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 4);
-
-            var options_label = new Gtk.Label (_("Options"));
-            options_checkbutton_box.pack_start (options_label, false, false,0);
-            options_checkbutton_box.pack_start (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), false, false, 0);
-
-            gtk_checkbutton = new Gtk.CheckButton.with_label ("gtk+-3.0");
-            gtk_checkbutton.active = settings.gtk;
-            options_checkbutton_box.pack_start (gtk_checkbutton, false, false, 2);
-
-            show_c_warnings_checkbutton = new Gtk.CheckButton.with_label ("Report C Warnings");
-            show_c_warnings_checkbutton.active = settings.show_c_warnings;
-            options_checkbutton_box.pack_start (show_c_warnings_checkbutton, false, false, 3);
-
-            options_pane.pack_start (options_checkbutton_box, true, true, 3);
-            var nothing_grid = new Gtk.Grid ();
-            nothing_grid.width_request = 0;
-            options_pane_stack.add_named (nothing_grid, "nothing");
-            options_pane_stack.add_named (options_pane, "options");
-            middle_box.pack_end (options_pane_stack, false, false, 5);
+            
+            settings_sidebar = new Widgets.SettingsSidebar ();
+            middle_box.pack_end (settings_sidebar, false, false, 5);
 
             bottom_bar = new BottomBar ();
             bottom_bar.change_location.connect (() => {
@@ -79,20 +46,14 @@ namespace ValaCompiler.Widgets {
                 files_list_box.get_files ().foreach ((item) => {
                     files.append (item);
                 });
-
-                //Parsing options
-                string[] options_string = {};
-                if (gtk_checkbutton.active == true) {
-                    options_string += "--pkg=gtk+-3.0";
-                };
-                if (show_c_warnings_checkbutton.active == false) {
-                    options_string += "-X";
-                    options_string += "-w";
-                };
+                
+                //get checkbutton options
+                string[] options_string = settings_sidebar.get_checkbuttons_status ();
+                
+                //combine bottom options with checkbuttons
                 foreach (string item in custom_options) {
                     options_string += item;
                 }
-
                 //embed options in files
                 foreach (string item in options_string) {
                     files.append (item);
@@ -105,12 +66,8 @@ namespace ValaCompiler.Widgets {
 
             this.pack_end (bottom_bar, false, false, 0);
 
-            //sidepane
-            //window = Window.get_instance ();
             show_side_pane.connect ((show) => {
-                toggle_options_pane = show;
-                //print ("ProjectPage: toggle_options_pane has changed to: " + toggle_options_pane.to_string () + "\n");
-                toggle_options ();
+                toggle_options (show);
             });
         }
 
@@ -133,17 +90,8 @@ namespace ValaCompiler.Widgets {
             };
         }
 
-        public void toggle_options () {
-            if (options_pane_stack.get_visible_child_name () == "nothing" && toggle_options_pane) {
-                options_pane.show ();
-                options_pane_stack.set_visible_child_full ("options", Gtk.StackTransitionType.SLIDE_LEFT);
-            } else if (options_pane_stack.get_visible_child_name () == "options" && !toggle_options_pane) {
-                options_pane_stack.width_request = options_pane_stack.get_allocated_width ();
-                options_pane_stack.set_visible_child_full ("nothing", Gtk.StackTransitionType.SLIDE_RIGHT);
-
-                options_pane.hide ();
-                options_pane_stack.width_request = 0;
-            };
+        public void toggle_options (bool show) {
+            settings_sidebar.toggle_visibility (show);
         }
     }
 }
