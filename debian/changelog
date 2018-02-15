@@ -4,7 +4,7 @@ com.github.basjam.valacompiler (0.1.14) stable; urgency=low
  * Add granite checkbutton
  * Fixed bug #14. Files marked as executable can now be listed by the app
 
- -- Basem Kheyar <basjam@gmail.com>  Mon, 12 Feb 2018 17:33:00 -0500
+ -- Basem Kheyar <basjam@gmail.com>  Mon, 15 Feb 2018 11:20:00 -0500
 
 com.github.basjam.valacompiler (0.1.11) stable; urgency=low
 [NEW]
