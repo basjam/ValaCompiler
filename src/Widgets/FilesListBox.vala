@@ -26,6 +26,12 @@ namespace ValaCompiler.Widgets {
         public Gtk.ListBox files_list_box;
         public List<string> files;
 
+        public const string FILES_LIST_BOX_STYLESHEET = """
+            files-list-box {
+                background-color: white;
+                color: white;
+            }
+        """;
         construct {
         }
 
@@ -50,22 +56,32 @@ namespace ValaCompiler.Widgets {
         }
 
         public void build_ui () {
+             Gtk.CssProvider files_list_box_style_provider = new Gtk.CssProvider ();
+
+             try {
+                 files_list_box_style_provider.load_from_data (FILES_LIST_BOX_STYLESHEET, -1);
+             } catch (Error e) {
+                 print ("Styling files-list-box failed: %s", e.message);
+             }
+
+            var style_context = this.get_style_context ();
+            style_context.add_provider (files_list_box_style_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+            style_context.add_class ("file-list-box");
+
             this.can_focus = false;
-            //this.width_request = 300;
-            this.margin = 6;
+            this.margin = 0;
             row_list = new List<Widgets.FilesListRow> ();
 
             var content = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
-            content.spacing = 5;
-            content.orientation = Gtk.Orientation.VERTICAL;
 
             var event_box = new Gtk.EventBox ();
             //event_box.button_press_event.connect (show_context_menu); //need to check this
 
             //TOP TITLE REGION;
-            file_title = new Gtk.Label (_("Files - Click To Exclude Files"));
+            file_title = new Gtk.Label (_("Files - Click To Exclude qqpp Files"));
             file_title.tooltip_text = _("Toggle files wish not to compile");
             file_title.halign = Gtk.Align.CENTER;
+            file_title.margin = 6;
             file_title.ellipsize = Pango.EllipsizeMode.END;
             event_box.add (file_title);
 
@@ -89,6 +105,7 @@ namespace ValaCompiler.Widgets {
             content.pack_start (event_box, false, false, 0);
             content.pack_start (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), false, false, 0);
             content.pack_start (files_scroll, true, true, 0);
+            content.pack_end (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), false, false, 0);
 
             this.add (content);
             this.show_all();

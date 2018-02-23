@@ -33,29 +33,29 @@ namespace ValaCompiler.Widgets {
 
             options_pane = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
             options_pane.margin_right = 0;
-            options_pane.pack_start (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), false, true, 0);
+            //options_pane.pack_start (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), false, true, 0);
             options_pane.pack_end (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), false, true,0);
 
-            options_checkbutton_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 4);
+            options_checkbutton_box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
 
             var options_label = new Gtk.Label (_("Options"));
-            options_label.margin_top = 3;
+            options_label.margin = 6;
             options_checkbutton_box.pack_start (options_label, false, false,0);
             options_checkbutton_box.pack_start (new Gtk.Separator (Gtk.Orientation.HORIZONTAL), false, false, 0);
 
             gtk_checkbutton = new Gtk.CheckButton.with_label ("gtk+-3.0");
             gtk_checkbutton.active = settings.gtk;
             options_checkbutton_box.pack_start (gtk_checkbutton, false, false, 2);
-            
+
             granite_checkbutton = new Gtk.CheckButton.with_label ("grante");
             granite_checkbutton.active = settings.granite;
             options_checkbutton_box.pack_start (granite_checkbutton, false, false, 2);
 
             show_c_warnings_checkbutton = new Gtk.CheckButton.with_label ("Report C Warnings");
             show_c_warnings_checkbutton.active = settings.show_c_warnings;
-            options_checkbutton_box.pack_start (show_c_warnings_checkbutton, false, false, 3);
-            
-            options_pane.pack_start (options_checkbutton_box, true, true, 3);
+            options_checkbutton_box.pack_start (show_c_warnings_checkbutton, false, false, 2);
+
+            options_pane.pack_start (options_checkbutton_box, true, true, 0);
             var nothing_grid = new Gtk.Grid ();
             nothing_grid.width_request = 0;
             options_pane_stack.add_named (nothing_grid, "nothing");
@@ -65,13 +65,13 @@ namespace ValaCompiler.Widgets {
             options_pane_hbox.pack_start (new Gtk.Separator (Gtk.Orientation.VERTICAL), false, false, 0);
             options_pane_hbox.pack_end (new Gtk.Separator (Gtk.Orientation.VERTICAL), false, false, 0);
             options_pane_hbox.pack_end (options_pane, false, false, 0);
-            options_pane_hbox.margin_bottom = 7;
+            options_pane_hbox.margin_bottom = 0;
 
             options_pane_stack.add_named (options_pane_hbox, "options");
 
             this.add (options_pane_stack);
         }
-        
+
         public string[] get_checkbuttons_status () {
             string[] options_string = {};
             if (gtk_checkbutton.active == true) {
@@ -84,13 +84,13 @@ namespace ValaCompiler.Widgets {
             if (granite_checkbutton.active == true) {
                 options_string += "--pkg=granite";
             }
-            
+
             return options_string;
         }
-        
+
         public void toggle_visibility (bool show) {
             toggle_options_pane = show;
-            
+
             if (options_pane_stack.get_visible_child_name () == "nothing" && toggle_options_pane) {
                 options_pane.show ();
                 options_pane_stack.set_visible_child_full ("options", Gtk.StackTransitionType.SLIDE_LEFT);

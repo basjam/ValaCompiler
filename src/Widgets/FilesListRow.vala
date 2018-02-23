@@ -41,8 +41,8 @@ namespace ValaCompiler.Widgets {
 
             var event_box = new Gtk.EventBox ();
             content = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-            content.margin = 6;
-            content.spacing = 12;
+            content.margin = 0;
+            content.spacing = 0;
 
             content.margin_top = content.margin_bottom = 6;
             content.halign = Gtk.Align.FILL;
@@ -51,6 +51,7 @@ namespace ValaCompiler.Widgets {
             icon = new Gtk.Image ();
             icon.tooltip_text = _("Click to toggle compiling");
             icon.set_from_icon_name ("user-available", Gtk.IconSize.DND);
+            icon.margin_right = 12;
 
             content.pack_end (icon, false, false, 0);
 
@@ -62,11 +63,12 @@ namespace ValaCompiler.Widgets {
 
             file_title = new Gtk.Label (this.file);
             file_title.xalign = 0;
+            file_title.margin_left = 12;
             file_title.ellipsize = Pango.EllipsizeMode.START; //better to show (..gets/RandomWidget.vala) than (Widgets/Ra...)
             content.pack_start (file_title, true, true, 0);
 
             this.add (event_box);
-            this.get_style_context ().add_class ("card");
+            this.get_style_context ().add_class (Granite.STYLE_CLASS_CARD);
             this.margin_top = 0;
             this.margin_bottom = 3;
             this.halign = Gtk.Align.FILL;

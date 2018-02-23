@@ -40,7 +40,7 @@ namespace ValaCompiler.Widgets {
         construct {
             this.orientation = Gtk.Orientation.VERTICAL;
             this.spacing = 12;
-            this.margin = 6;
+            this.margin = 0;
 
             //Granite.Widgets.ModeButton setup
             view_button = new Granite.Widgets.ModeButton ();

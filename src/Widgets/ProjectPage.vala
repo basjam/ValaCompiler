@@ -30,11 +30,29 @@ namespace ValaCompiler.Widgets {
         public int preferred_width;
         public int nat_width;
 
+        public const string PROJECT_PAGE_STYLESHEET = """
+            middle-box {
+                background-color: white;
+            }
+            files-list-box {
+                background-color: white;
+            }
+        """;
+
         construct {
-            middle_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 2);
-            
+            this.margin = 0;
+            middle_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+
+            Gtk.CssProvider project_page_style_provider = new Gtk.CssProvider ();
+
+            try {
+                project_page_style_provider.load_from_data (PROJECT_PAGE_STYLESHEET, -1);
+            } catch (Error e) {
+                print ("Styling middle-box failed: %s", e.message);
+            }
+
             settings_sidebar = new Widgets.SettingsSidebar ();
-            middle_box.pack_end (settings_sidebar, false, false, 5);
+            middle_box.pack_end (settings_sidebar, false, false, 0);
 
             bottom_bar = new BottomBar ();
             bottom_bar.change_location.connect (() => {
@@ -46,10 +64,10 @@ namespace ValaCompiler.Widgets {
                 files_list_box.get_files ().foreach ((item) => {
                     files.append (item);
                 });
-                
+
                 //get checkbutton options
                 string[] options_string = settings_sidebar.get_checkbuttons_status ();
-                
+
                 //combine bottom options with checkbuttons
                 foreach (string item in custom_options) {
                     options_string += item;
@@ -62,7 +80,7 @@ namespace ValaCompiler.Widgets {
             });
 
             this.orientation = Gtk.Orientation.VERTICAL;
-            this.pack_start (middle_box, true, true, 2);
+            this.pack_start (middle_box, true, true, 0);
 
             this.pack_end (bottom_bar, false, false, 0);
 
@@ -77,7 +95,7 @@ namespace ValaCompiler.Widgets {
                 clear_list_box ();
                 files_list_box = Widgets.FilesListBox.get_instance (true);
                 files_list_box.populate (files_manager.get_files_array ());
-                middle_box.pack_start (files_list_box, true, true, 5);
+                middle_box.pack_start (files_list_box, true, true, 0);
                 this.show_all ();
             });
         }
