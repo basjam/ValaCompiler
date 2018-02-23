@@ -28,6 +28,13 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="0.1.15" date="2018-02-22">
+            <description>
+                <ul>
+                <li>Made UI more consistent across pages</li>
+                </ul>
+            </description>
+        </release>
         <release version="0.1.14" date="2018-02-15">
             <description>
                 <ul>

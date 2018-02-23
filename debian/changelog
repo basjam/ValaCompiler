@@ -1,3 +1,9 @@
+com.github.basjam.valacompiler (0.1.15) stable; urgency=low
+[NEW]
+ * Made UI more consistent across pages
+
+ -- Basem Kheyar <basjam@gmail.com>  Thu, 22 Feb 2018 08:25:00 -0500
+
 com.github.basjam.valacompiler (0.1.14) stable; urgency=low
 [NEW]
  * Minor UI improvements
