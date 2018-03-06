@@ -43,5 +43,3 @@ To install, use 'make install'
 ## Precautions
 
 * This app will create a file named TEST in your source folder.
-* This app will send a 'killall TEST' signal. Make sure that you do not have any running application named 'TEST'.
-
