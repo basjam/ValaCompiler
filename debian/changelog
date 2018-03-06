@@ -1,11 +1,18 @@
+com.github.basjam.valacompiler (0.1.16) stable; urgency=low
+
+ * Minor UI improvements
+ * Kill button now works through pid instead of "killall TEST"
+
+ -- Basem Kheyar <basjam@gmail.com>  Mon, 05 Mar 2018 08:25:00 -0500
+
 com.github.basjam.valacompiler (0.1.15) stable; urgency=low
-[NEW]
+
  * Made UI more consistent across pages
 
  -- Basem Kheyar <basjam@gmail.com>  Thu, 22 Feb 2018 08:25:00 -0500
 
 com.github.basjam.valacompiler (0.1.14) stable; urgency=low
-[NEW]
+
  * Minor UI improvements
  * Add granite checkbutton
  * Fixed bug #14. Files marked as executable can now be listed by the app
@@ -13,7 +20,7 @@ com.github.basjam.valacompiler (0.1.14) stable; urgency=low
  -- Basem Kheyar <basjam@gmail.com>  Mon, 15 Feb 2018 11:20:00 -0500
 
 com.github.basjam.valacompiler (0.1.11) stable; urgency=low
-[NEW]
+
  * Initial Release
 
  -- Basem Kheyar <basjam@gmail.com>  Thu, 23 Nov 2017 15:44:39 -0500
