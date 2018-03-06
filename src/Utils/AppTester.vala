@@ -19,6 +19,7 @@ namespace ValaCompiler.Utils {
         public signal void test_line_out (string line);
         public signal void test_done ();
         public signal void kill_test_signal (string kill_report);
+        private string test_pids = "";
 
         public static AppTester instance = null;
         public static AppTester get_instance () {
@@ -48,6 +49,8 @@ namespace ValaCompiler.Utils {
                     out standard_input,
                     out standard_output,
                     out standard_error);
+
+                    test_pids += child_pid.to_string () + " ";
 
                     IOChannel output = new IOChannel.unix_new (standard_output);
                     output.add_watch (IOCondition.IN | IOCondition.HUP, (channel, condition) => {
@@ -94,13 +97,20 @@ namespace ValaCompiler.Utils {
         }
 
         public void kill_test () {
+            if (check_test_running ()) {
+                kill_test_signal (" - TEST was Killed.\n");
+            } else {
+                kill_test_signal (" - There are no instances of TEST to kill. \n");
+            }
+            
+            string command = "kill " + test_pids;
             string stdout;
             string stderr;
             int status;
 
             try {
                 Process.spawn_command_line_sync (
-                    "killall TEST",
+                    command,
                     out stdout,
                     out stderr,
                     out status
@@ -109,14 +119,12 @@ namespace ValaCompiler.Utils {
                 print ("Error: %s\n", e.message);
             }
 
-            if (stderr == "") {
-                kill_test_signal (" - TEST was Killed.\n");
-            } else {
-                kill_test_signal (" - There are no instances of TEST to kill. \n");
-            }
+            test_pids = "";
         }
 
         public bool check_test_running () {
+            string[] pids = test_pids.split (" ");
+            
             string stdout;
             string stderr;
             int status;
@@ -132,11 +140,12 @@ namespace ValaCompiler.Utils {
                 print ("Error: %s\n", e.message);
             }
 
-            if (stdout.contains ("TEST")) {
-                return true;
-            } else {
-                return false;
+            foreach (string pid in pids) {
+                if (stdout.contains (pid) && pid != "") {
+                    return true;
+                }
             }
+            return false;
         }
     }
 }

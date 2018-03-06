@@ -91,6 +91,7 @@ namespace ValaCompiler {
             kill_test_button.clicked.connect (() => {
                 app_tester = Utils.AppTester.get_instance ();
                 app_tester.kill_test ();
+                kill_test_button.sensitive = app_tester.check_test_running ();
                 if (main_stack.get_visible_child_name () == "welcome") {
                     kill_test_button.hide ();
                 };
