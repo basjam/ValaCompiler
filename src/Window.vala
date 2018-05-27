@@ -48,7 +48,7 @@ namespace ValaCompiler {
             project_page = new Widgets.ProjectPage ();
             report_page = new Widgets.ReportPage ();
 
-            set_default_geometry (800, 680);
+            set_default_geometry (600, 600);
 
             header = new Gtk.HeaderBar ();
             header.set_show_close_button (true);
