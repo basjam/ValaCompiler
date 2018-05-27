@@ -192,7 +192,7 @@ namespace ValaCompiler {
             navigation_button.show ();
             options_button.show ();
             app = App.get_instance ();
-            header.title = app.program_name + " (" + project_location + ")";
+            header.title = app.program_name ;
             files_manager = Utils.FilesManager.get_instance ();
             files_manager.list_files (project_location);
             settings.project_location = project_location;
