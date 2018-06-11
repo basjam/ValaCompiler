@@ -78,7 +78,7 @@ namespace ValaCompiler.Widgets {
             //event_box.button_press_event.connect (show_context_menu); //need to check this
 
             //TOP TITLE REGION;
-            file_title = new Gtk.Label (_("Files - Click To Exclude qqpp Files"));
+            file_title = new Gtk.Label (_("Files - Click To Exclude Files"));
             file_title.tooltip_text = _("Toggle files wish not to compile");
             file_title.halign = Gtk.Align.CENTER;
             file_title.margin = 6;
