@@ -27,11 +27,13 @@ namespace ValaCompiler.Utils {
             return instance;
         }
 
-        public async void compile_files (string location, string[] files) {
-            try {
-                string[] spawn_args = {"valac", "--output=TEST"};
-                foreach (string file in files) {
-                    spawn_args += file;
+        public async void compile (string[] args) {
+            string location = settings.project_location;
+            DirUtils.create_with_parents (location + "/valacompiler", 509 );
+            try {                
+                string[] spawn_args = {"valac", "--output=valacompiler/valacompiler.test"};
+                foreach (string arg in args) {
+                    spawn_args += arg;
                 };
                 string[] spawn_env = Environ.get ();
                 Pid child_pid;

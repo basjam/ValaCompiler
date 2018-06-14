@@ -19,6 +19,8 @@ namespace ValaCompiler {
 
     public class App : Granite.Application {
         public Window window;
+        public Utils.OptionsManager options_manager;
+        public Widgets.OptionsListBox options_list_box;
 
         construct {
             program_name = "ValaCompiler";
@@ -28,6 +30,9 @@ namespace ValaCompiler {
 
         public App () {
             settings = new Settings ();
+            shutdown.connect (() => {
+                window.shut_down ();
+            });
         }
 
         private static App app;
@@ -38,12 +43,11 @@ namespace ValaCompiler {
         }
 
         public override void activate () {
-            if (window == null) {
-                settings.project_location = "";
-                window = new Window ();
-                window.application = this;
-                window.title = program_name;
-            }
+            settings.project_location = "";
+            window = Window.get_instance ();
+            window.application = this;
+            window.title = program_name;
+            
         }
     }
 }

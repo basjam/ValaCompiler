@@ -17,99 +17,33 @@
 namespace ValaCompiler.Widgets {
     public class ProjectPage : Gtk.Box {
         public Widgets.FilesListBox files_list_box;
-        public ValaCompiler.Utils.FilesManager files_manager;
-        public Gtk.Box middle_box;
-        public Widgets.BottomBar bottom_bar;
-        public Window window;
-        public Widgets.SettingsSidebar settings_sidebar;
+        public Gtk.Overlay overlay;
+        public Widgets.OptionsSidebar options_sidebar;
 
-        public signal void change_location ();
-        public signal void compile (List<string> files);
-        public signal void show_side_pane (bool show);
-
-        public int preferred_width;
-        public int nat_width;
-
-        public const string PROJECT_PAGE_STYLESHEET = """
-            middle-box {
-                background-color: white;
-            }
-            files-list-box {
-                background-color: white;
-            }
-        """;
-
+        public static ProjectPage instance = null;
+        public static ProjectPage get_instance () {
+            if (instance == null) {
+                instance = new ProjectPage ();
+            };
+            return instance;
+        }        
+        
         construct {
+            this.instance = this;
             this.margin = 0;
-            middle_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-
-            Gtk.CssProvider project_page_style_provider = new Gtk.CssProvider ();
-
-            try {
-                project_page_style_provider.load_from_data (PROJECT_PAGE_STYLESHEET, -1);
-            } catch (Error e) {
-                print ("Styling middle-box failed: %s", e.message);
-            }
-
-            settings_sidebar = new Widgets.SettingsSidebar ();
-            middle_box.pack_end (settings_sidebar, false, false, 0);
-
-            bottom_bar = new BottomBar ();
-            bottom_bar.change_location.connect (() => {
-                this.change_location ();
-            });
-            bottom_bar.compile.connect ((custom_options) => {
-                List<string> files;
-                files_list_box = Widgets.FilesListBox.get_instance (false);
-                files_list_box.get_files ().foreach ((item) => {
-                    files.append (item);
-                });
-
-                //get checkbutton options
-                string[] options_string = settings_sidebar.get_checkbuttons_status ();
-
-                //combine bottom options with checkbuttons
-                foreach (string item in custom_options) {
-                    options_string += item;
-                }
-                //embed options in files
-                foreach (string item in options_string) {
-                    files.append (item);
-                }
-                compile (files);
-            });
+            overlay = new Gtk.Overlay ();
+            files_list_box = Widgets.FilesListBox.get_instance ();
+            overlay.add (files_list_box);
 
             this.orientation = Gtk.Orientation.VERTICAL;
-            this.pack_start (middle_box, true, true, 0);
-
-            this.pack_end (bottom_bar, false, false, 0);
-
-            show_side_pane.connect ((show) => {
-                toggle_options (show);
-            });
+            this.pack_start (overlay, true, true, 0);
+            
+            options_sidebar = new Widgets.OptionsSidebar ();
+            overlay.add_overlay (options_sidebar);
         }
 
-        public ProjectPage () {
-            files_manager = ValaCompiler.Utils.FilesManager.get_instance ();
-            files_manager.files_array_ready.connect (() =>{
-                clear_list_box ();
-                files_list_box = Widgets.FilesListBox.get_instance (true);
-                files_list_box.populate (files_manager.get_files_array ());
-                middle_box.pack_start (files_list_box, true, true, 0);
-                this.show_all ();
-            });
-        }
-
-        public void clear_list_box () {
-           foreach (var item in middle_box.get_children ()) {
-                if (item == files_list_box) {
-                    middle_box.remove (item);
-                }
-            };
-        }
-
-        public void toggle_options (bool show) {
-            settings_sidebar.toggle_visibility (show);
+        public void toggle_options () {
+            options_sidebar.toggle_visibility ();
         }
     }
 }

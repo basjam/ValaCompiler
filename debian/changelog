@@ -1,3 +1,16 @@
+com.github.basjam.valacompiler (1.0.0) stable; urgency=low
+
+ * Consistent UI for Files and Options in ProjectPage.
+ * Cool new sliding animation for options side panel.
+ * Ability to manually add and remove to the list.
+ * App remembers options and their status per project.
+ * Smarter buttons on the Headerbar. Compile button is there when you want it. Test button checks weather there is a test file. Kill test button appears only when there is a test to be killed.
+ * Separate App name in title and project address in subtitle on the Headerbar.
+ * Smaller window by default.
+ * Dark button colors.
+
+ -- Basem Kheyar <basjam@gmail.com>  Thu, 14 Jun 2018 06:00:00 -0500
+
 com.github.basjam.valacompiler (0.1.16) stable; urgency=low
 
  * Minor UI improvements

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-11-01 19:25-0400\n"
+"POT-Creation-Date: 2018-06-14 05:42-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,60 +17,126 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: ../src/Window.vala:93
-msgid "Select Project Folder"
+#: ../src/Widgets/OptionsSidebar.vala:55 ../src/Widgets/HeaderBar.vala:72
+msgid "Options"
 msgstr ""
 
-#: ../src/Window.vala:96
-msgid "Cancel"
+#: ../src/Widgets/OptionsSidebar.vala:63
+#: ../src/Widgets/AddOptionsDialog.vala:39
+#: ../src/Widgets/AddOptionsDialog.vala:50
+msgid "Add options"
 msgstr ""
 
-#: ../src/Window.vala:98
-msgid "Open"
+#: ../src/Widgets/OptionsSidebar.vala:72
+msgid "Clear all options"
 msgstr ""
 
-#: ../src/Window.vala:103
-msgid "Vala files"
+#: ../src/Widgets/ReportPage.vala:57
+msgid "Compile Report"
 msgstr ""
 
-#: ../src/Window.vala:107
-msgid "All Files"
+#: ../src/Widgets/ReportPage.vala:58
+msgid "Live Test Report"
 msgstr ""
 
-#: ../src/Widgets/FilesListRow.vala:41 ../src/Widgets/FilesListRow.vala:55
-msgid "Click to toggle compiling"
+#: ../src/Widgets/ReportPage.vala:92 ../src/Widgets/ReportPage.vala:120
+#: ../src/Widgets/ReportPage.vala:132
+msgid "Clear Report"
 msgstr ""
 
-#. //need to check this
-#. TOP TITLE REGION;
-#: ../src/Widgets/FilesListBox.vala:69
+#: ../src/Widgets/ReportPage.vala:99 ../src/Widgets/ReportPage.vala:123
+#: ../src/Widgets/ReportPage.vala:135
+msgid "Undo Last Clear"
+msgstr ""
+
+#: ../src/Widgets/FilesListBox.vala:58
 msgid "Files"
 msgstr ""
 
-#: ../src/Widgets/FilesListBox.vala:70
-msgid "Highlight the files you wish to compile"
+#: ../src/Widgets/FilesListBox.vala:59
+msgid "Toggle files to be compiled"
 msgstr ""
 
-#: ../src/Widgets/FilesListBottomBar.vala:31
+#: ../src/Widgets/FilesListBox.vala:85
 msgid "Change source folder"
 msgstr ""
 
-#: ../src/Widgets/NavigationButton.vala:29
-msgid "Back"
+#: ../src/Widgets/HeaderBar.vala:82
+msgid "Compile"
 msgstr ""
 
-#: ../src/Widgets/WelcomePage.vala:22
+#: ../src/Widgets/HeaderBar.vala:88
+msgid "Test the app"
+msgstr ""
+
+#: ../src/Widgets/HeaderBar.vala:97
+msgid "Kill all running tests"
+msgstr ""
+
+#: ../src/Widgets/HeaderBar.vala:152
+msgid "Welcome Page"
+msgstr ""
+
+#: ../src/Widgets/HeaderBar.vala:154
+msgid "Report Page"
+msgstr ""
+
+#: ../src/Widgets/HeaderBar.vala:163
+msgid "Project Page"
+msgstr ""
+
+#: ../src/Widgets/AddOptionsDialog.vala:30
+msgid "Enter options separated by a space eg: --pkg=granite --pkg=gtk+-3.0"
+msgstr ""
+
+#: ../src/Widgets/FilesListRow.vala:47
+msgid "Click to toggle file"
+msgstr ""
+
+#: ../src/Widgets/OptionsListRow.vala:43
+msgid "Remove option"
+msgstr ""
+
+#: ../src/Widgets/OptionsListRow.vala:59
+msgid "Click to toggle option"
+msgstr ""
+
+#: ../src/Widgets/WelcomePage.vala:29
 msgid "Vala Compiler"
 msgstr ""
 
-#: ../src/Widgets/WelcomePage.vala:22
+#: ../src/Widgets/WelcomePage.vala:29
 msgid "A simple GUI for the command line valac"
 msgstr ""
 
-#: ../src/Widgets/WelcomePage.vala:27
+#: ../src/Widgets/WelcomePage.vala:35
 msgid "Source folder"
 msgstr ""
 
-#: ../src/Widgets/WelcomePage.vala:27
+#: ../src/Widgets/WelcomePage.vala:35
 msgid "Open your source folder."
+msgstr ""
+
+#: ../src/Widgets/WelcomePage.vala:38
+msgid "Open last source folder"
+msgstr ""
+
+#: ../src/Window.vala:62
+msgid "Select Project Folder"
+msgstr ""
+
+#: ../src/Window.vala:65
+msgid "Cancel"
+msgstr ""
+
+#: ../src/Window.vala:67
+msgid "Open"
+msgstr ""
+
+#: ../src/Window.vala:72
+msgid "Vala files"
+msgstr ""
+
+#: ../src/Window.vala:76
+msgid "All Files"
 msgstr ""

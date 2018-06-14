@@ -15,13 +15,26 @@
 ***/
 
 namespace ValaCompiler.Utils {
-    public class CompileParser {
-        public static CompileParser instance = null;
-        public static CompileParser get_instance () {
-            if (instance == null) {
-                instance = new CompileParser ();
-            };
-            return instance;
+    public class File {
+        private string file;
+        private bool active;
+        
+        public File (string file_incoming, bool active_incoming) {
+            this.file = file_incoming;
+            this.active = active_incoming;
         }
+        
+        public string get_file () {
+            return this.file;
+        }
+        
+        public bool get_active () {
+            return this.active;
+        }
+        
+        public void set_active (bool active_incoming) {
+            this.active = active_incoming;
+        }
+        
     }
 }

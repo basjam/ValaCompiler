@@ -16,7 +16,15 @@
 
 namespace ValaCompiler.Widgets {
     public class WelcomePage : Granite.Widgets.Welcome {
-
+        
+        public static WelcomePage instance = null;
+        public static WelcomePage get_instance () {
+            if (instance == null) {
+                instance = new WelcomePage ();
+            };
+            return instance;
+        }
+        
         public WelcomePage () {
             base (_("Vala Compiler"), _("A simple GUI for the command line valac"));
         }
