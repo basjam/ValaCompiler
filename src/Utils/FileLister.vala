@@ -31,7 +31,6 @@ namespace ValaCompiler.Utils {
         }
 
         public async void scan_files (string location) {
-            //stdout.printf ("check: begin scan_files \n");
             try {
                 string[] spawn_args = {"ls", "-B", "-R", "--file-type"};
                 string[] spawn_env = Environ.get ();
@@ -54,13 +53,16 @@ namespace ValaCompiler.Utils {
 
                 // stdout:
                 IOChannel output = new IOChannel.unix_new (standard_output);
-                output.add_watch (IOCondition.IN | IOCondition.HUP, (channel, condition) => {
+                output.add_watch (IOCondition.IN | IOCondition.HUP, (channel,
+                 condition) => {
                     return process_line (channel, condition, "stdout");
                 });
 
                 // stderr:
-                IOChannel error = new IOChannel.unix_new (standard_error);
-                error.add_watch (IOCondition.IN | IOCondition.HUP, (channel, condition) => {
+                IOChannel error = new IOChannel.unix_new
+                 (standard_error);
+                error.add_watch (IOCondition.IN | IOCondition.HUP,
+                 (channel, condition) => {
                     return process_line (channel, condition, "stderr");
                 });
 
@@ -73,10 +75,10 @@ namespace ValaCompiler.Utils {
             return;
         }
 
-        public bool process_line (IOChannel channel, IOCondition condition, string stream_name) {
+        public bool process_line (IOChannel channel,
+         IOCondition condition, string stream_name) {
             if (condition == IOCondition.HUP) {
-
-                //stdout.printf ("%s: The fd has been closed.\n", stream_name);
+            
                 if (stream_name == "stdout"){
                     listing_files_done ();
                 };
@@ -87,13 +89,15 @@ namespace ValaCompiler.Utils {
             try {
                 string line;
                 channel.read_line (out line, null, null);
-                //stdout.printf ("%s: %s", stream_name, line);
+                
                 found_a_file (line.to_string ());
                 } catch (IOChannelError e) {
-                    stdout.printf ("%s: IOChannelError: %s\n", stream_name, e.message);
+                    stdout.printf ("%s: IOChannelError: %s\n",
+                     stream_name, e.message);
                     return false;
                 } catch (ConvertError e) {
-                    stdout.printf ("%s: ConvertError: %s\n", stream_name, e.message);
+                    stdout.printf ("%s: ConvertError: %s\n",
+                     stream_name, e.message);
                     return false;
                 }
             return true;

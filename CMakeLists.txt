@@ -45,17 +45,24 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/Settings/Settings.vala
     src/Utils/FileLister.vala
     src/Utils/FilesManager.vala
-    src/Utils/Files.vala
     src/Utils/ValaC.vala
     src/Utils/AppTester.vala
-    src/Widgets/FilesListBottomBar.vala
+    src/Utils/OptionsManager.vala
+    src/Utils/Option.vala
+    src/Utils/CompileManager.vala
+    src/Utils/ReportsManager.vala
+    src/Utils/File.vala
     src/Widgets/FilesListBox.vala
     src/Widgets/FilesListRow.vala
-    src/Widgets/NavigationButton.vala
     src/Widgets/ProjectPage.vala
     src/Widgets/WelcomePage.vala
     src/Widgets/ReportPage.vala
-    src/Widgets/SettingsSidebar.vala
+    src/Widgets/OptionsSidebar.vala
+    src/Widgets/OptionsListBox.vala
+    src/Widgets/OptionsListRow.vala
+    src/Widgets/AddOptionsDialog.vala
+    src/Widgets/HeaderBar.vala
+    src/Widgets/MainStack.vala
 
 # tell what libraries to use when compiling
 PACKAGES

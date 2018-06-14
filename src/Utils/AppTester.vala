@@ -20,6 +20,9 @@ namespace ValaCompiler.Utils {
         public signal void test_done ();
         public signal void kill_test_signal (string kill_report);
         private string test_pids = "";
+        
+        public bool test_running = false;
+        public bool test_exists = false;
 
         public static AppTester instance = null;
         public static AppTester get_instance () {
@@ -29,9 +32,10 @@ namespace ValaCompiler.Utils {
             return instance;
         }
 
-        public async void test_app (string location) {
+        public async void test_app () {
             try {
-                string[] spawn_args = {"./TEST"};
+                string location = settings.project_location;
+                string[] spawn_args = {"./valacompiler/valacompiler.test"};
                 string[] spawn_env = Environ.get ();
                 Pid child_pid;
 
@@ -142,10 +146,22 @@ namespace ValaCompiler.Utils {
 
             foreach (string pid in pids) {
                 if (stdout.contains (pid) && pid != "") {
+                    test_running = true;
                     return true;
                 }
             }
+            test_running = false;
             return false;
+        }
+        
+        public bool check_test_exists () {
+            if (FileUtils.test (settings.project_location + "/valacompiler/valacompiler.test", GLib.FileTest.EXISTS)) {
+                test_exists = true;
+                return true;
+            } else {
+                test_exists = false;
+                return false;
+            }
         }
     }
 }

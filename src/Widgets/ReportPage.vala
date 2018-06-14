@@ -18,6 +18,7 @@ namespace ValaCompiler.Widgets {
     public class ReportPage : Gtk.Box {
 
         public Utils.AppTester app_tester;
+        public Utils.ReportsManager reports_manager;
         public Gtk.Box bottom_box;
         public Gtk.Button clear_button;
         public string clear_target;
@@ -36,8 +37,17 @@ namespace ValaCompiler.Widgets {
         public Gtk.ScrolledWindow test_scroll;
 
         public Granite.Widgets.ModeButton view_button;
+        
+        public static ReportPage instance = null;
+        public static ReportPage get_instance () {
+            if (instance == null) {
+                instance = new ReportPage ();
+            };
+            return instance;
+        }
 
         construct {
+            reports_manager = Utils.ReportsManager.get_instance ();
             this.orientation = Gtk.Orientation.VERTICAL;
             this.spacing = 12;
             this.margin = 0;
@@ -77,13 +87,15 @@ namespace ValaCompiler.Widgets {
 
             //Setup bottom_box
             clear_target = "compile";
-            clear_button = new Gtk.Button.from_icon_name ("edit-clear", Gtk.IconSize.LARGE_TOOLBAR);
+            clear_button = new Gtk.Button.from_icon_name ("edit-clear-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+            clear_button.relief = Gtk.ReliefStyle.NONE;
             clear_button.tooltip_text = _("Clear Report");
             clear_button.sensitive = target_contains_text ();
 
             undo_chance_test = false;
             undo_chance_compile = false;
-            undo_button = new Gtk.Button.from_icon_name ("edit-undo", Gtk.IconSize.LARGE_TOOLBAR);
+            undo_button = new Gtk.Button.from_icon_name ("edit-undo-symbolic", Gtk.IconSize.LARGE_TOOLBAR);
+            undo_button.relief = Gtk.ReliefStyle.NONE;
             undo_button.tooltip_text = _("Undo Last Clear");
             if (undo_chance_compile) {
                 undo_button.sensitive = true;

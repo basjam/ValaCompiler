@@ -17,15 +17,19 @@
 namespace ValaCompiler.Utils {
     public class FilesManager : GLib.Object {
         private string location = null;
+        
         public signal void start_project (string location);
         public signal void files_array_ready ();
         public signal void compile_done ();
 
         public Utils.FileLister file_lister;
-        public Utils.Files files;
-        public Utils.ValaC valac;
-
-        public List<string> files_array;
+        
+        public Widgets.FilesListBox files_list_box;
+        
+        private string[] dirty_files_string_array = {};
+        private string[] files_string_array = {};
+        
+        
 
         public static FilesManager instance = null;
         public static FilesManager get_instance () {
@@ -35,53 +39,100 @@ namespace ValaCompiler.Utils {
             return instance;
         }
 
-        private FilesManager () {
+        public FilesManager () {
             file_lister = Utils.FileLister.get_instance ();
-            files = Utils.Files.get_instance ();
-            files.files_array_ready.connect (() => {
-                this.files_array_ready ();
+            file_lister.found_a_file.connect ((file_string) => {
+                add_file (file_string);
             });
-
-            valac = Utils.ValaC.get_instance ();
-            valac.compile_done.connect (() => {
-                this.compile_done ();
+            file_lister.listing_files_done.connect (() => {
+                clean_up_files_list ();
             });
+            
+            files_list_box = Widgets.FilesListBox.get_instance ();
         }
-
-        public void list_files (string location) {
-            file_lister = Utils.FileLister.get_instance ();
-            file_lister.scan_files.begin (location);
-            this.location = location;
+        
+        public void clean_up_files_list () {
+            
+            string[] temp_files_string_array = {};
+            string[] temp2_files_string_array = {};
+            string parent_folder = "";
+            string temp_file_string = "";
+            
+            //Remove empty and unecessary strings
+            foreach (string file_string in dirty_files_string_array) {
+                file_string = file_string.strip ();
+                if (!(file_string.has_suffix ("*") ||
+                 file_string.has_suffix (".:") ||
+                 file_string.has_suffix ("/") || file_string == "")) {
+                    temp_files_string_array += file_string;
+                };
+            };
+            
+            //Arrange files inro hierarchy & Remove parents from list
+            foreach (string file_string in temp_files_string_array) {
+                if (file_string.has_prefix ("./")) {
+                    
+                    parent_folder = file_string.slice (2, file_string.length - 1) + "/";
+                } else {
+                   temp_file_string = parent_folder + file_string;
+                   temp2_files_string_array += temp_file_string;
+                };
+            };
+            
+            //Only keep .vala .vapi .gs. and .c files
+            foreach (string file_string in temp2_files_string_array) {
+                if (file_string.has_suffix (".vala") || 
+                 file_string.has_suffix (".vapi") ||
+                 file_string.has_suffix (".gs") ||
+                 file_string.has_suffix (".c")) {
+                    files_string_array += file_string;
+                };
+            };
+            
+            dirty_files_string_array = {};
+            populate_files_list_box ();
         }
-
+        
+        public void populate_files_list_box () {
+            files_list_box = Widgets.FilesListBox.get_instance ();
+            files_list_box.populate (files_string_array);
+        }
+        
         public void add_file (string file){
-            files_array.append (file);
+            dirty_files_string_array += file;
             return;
         }
 
-        public string get_file_array_length () {
-            return files_array.length ().to_string ();
+        public void list_files () {
+            location = settings.project_location;
+            debug ("starting file_lister.scan");
+            file_lister.scan_files.begin (location);
         }
 
-        public List<string> get_files_array () {
-            files = Utils.Files.get_instance ();
-            var list = files.get_files_array ();
-            return list;
+        public string[] get_files () {
+            return convert_to_string (files_list_box.get_files ());
+        }
+        
+        public string[] convert_to_string (Utils.File[] file_objects) {
+            string[] converted = {};
+            foreach (Utils.File file in file_objects) {
+                if (file.get_active ()) {
+                    converted += file.get_file ();
+                };
+            };
+            
+            return converted;
         }
 
-        public void clear_files_array () {
-            files = Utils.Files.get_instance ();
-            files.clear_files_array ();
+        public void clear_files () {
+            files_list_box = Widgets.FilesListBox.get_instance ();
+            files_list_box.clear_files ();
+            
+            dirty_files_string_array = {};
+            files_string_array = {};
         }
 
-        public void compile (List<string> compile_list) {
-            string[] compile_list_sending = null;
-            foreach (string item in compile_list) {
-                compile_list_sending += item;
-            }
-
-            valac = Utils.ValaC.get_instance ();
-            valac.compile_files.begin (location, compile_list_sending);
+        public void compile () {
         }
     }
 }
