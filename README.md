@@ -2,8 +2,8 @@
 A simple GUI for the command line valac.
 
 ![Screenshot](screenshots/ValaCompiler-ProjectPage(ScreenShot).png)
-![Screenshot](screenshots/ValaCompiler-CompileReport(ScreenShot).png)
-![Screenshot](screenshots/ValaComplier-TestReport(ScreenShot).png)
+![Screenshot](screenshots/ValaCompiler-CompilerReport(ScreenShot).png)
+![Screenshot](screenshots/ValaCompiler-TestReport(ScreenShot).png)
 
 ## What the application does
 1-Select your project source folder, and create a "valacompiler" folder in it.
