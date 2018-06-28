@@ -52,6 +52,8 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/Utils/CompileManager.vala
     src/Utils/ReportsManager.vala
     src/Utils/File.vala
+    src/Utils/CompileParser.vala
+    src/Utils/ErrorObject.vala
     src/Widgets/FilesListBox.vala
     src/Widgets/FilesListRow.vala
     src/Widgets/ProjectPage.vala
@@ -63,6 +65,8 @@ vala_precompile(VALA_C ${EXEC_NAME}
     src/Widgets/AddOptionsDialog.vala
     src/Widgets/HeaderBar.vala
     src/Widgets/MainStack.vala
+    src/Widgets/CompileReport.vala
+    src/Widgets/CompileItem.vala
 
 # tell what libraries to use when compiling
 PACKAGES

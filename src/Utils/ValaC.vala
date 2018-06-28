@@ -18,6 +18,10 @@ namespace ValaCompiler.Utils {
     public class ValaC {
         public signal void compile_line_out (string line);
         public signal void compile_done ();
+        public string compile_report = "";
+        public signal void starting ();
+        
+        private string last_line;
 
         public static ValaC instance = null;
         public static ValaC get_instance () {
@@ -28,13 +32,22 @@ namespace ValaCompiler.Utils {
         }
 
         public async void compile (string[] args) {
+            compile_report = "";
+            
             string location = settings.project_location;
             DirUtils.create_with_parents (location + "/valacompiler", 509 );
-            try {                
+            try {
+                starting ();
+                string command_line = "valac"; //for debugging
+                                
                 string[] spawn_args = {"valac", "--output=valacompiler/valacompiler.test"};
                 foreach (string arg in args) {
                     spawn_args += arg;
+                    command_line += " " + arg; //for debugging
                 };
+                
+                debug (command_line);
+                
                 string[] spawn_env = Environ.get ();
                 Pid child_pid;
 
@@ -75,11 +88,12 @@ namespace ValaCompiler.Utils {
         public bool process_line (IOChannel channel, IOCondition condition, string stream_name) {
             if (condition == IOCondition.HUP) {
                 if (stream_name == "stdout"){
+                    compile_line_out (compile_report);
                     compile_done ();
-                    //print ("ValaC: " + stream_name + " is done. \n");
+                    //message ("ValaC: " + stream_name + " is done. \n");
                 };
                 if (stream_name == "stderr"){
-                    //print ("ValaC: " + stream_name + " is done.\n");
+                    //message ("ValaC: " + stream_name + " is done.\n");
                 }
                 return false;
             }
@@ -87,9 +101,8 @@ namespace ValaCompiler.Utils {
             try {
                 string line;
                 channel.read_line (out line, null, null);
-                compile_line_out (line);
-                //print (line);
-                //print ("ValaC: " + stream_name + ": " + line );
+                //compile_line_out (line);
+                compile_report += line;
             } catch (IOChannelError e) {
                 stdout.printf ("%s: IOChannelError: %s\n", stream_name, e.message);
             } catch (ConvertError e) {

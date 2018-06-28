@@ -29,7 +29,7 @@ namespace ValaCompiler.Widgets {
         }        
         
         construct {
-            this.instance = this;
+            instance = this;
             this.margin = 0;
             overlay = new Gtk.Overlay ();
             files_list_box = Widgets.FilesListBox.get_instance ();

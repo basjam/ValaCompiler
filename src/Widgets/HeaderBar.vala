@@ -28,6 +28,7 @@ namespace ValaCompiler.Widgets {
         public Utils.AppTester app_tester;
         public Utils.CompileManager compile_manager;
         public Utils.ValaC valac;
+        public Utils.ReportsManager reports_manager;
         
         public static HeaderBar instance = null;
         public static HeaderBar get_instance () {
@@ -50,6 +51,7 @@ namespace ValaCompiler.Widgets {
                 check_test_ready ();
             });            
             project_page = Widgets.ProjectPage.get_instance ();
+            reports_manager = Utils.ReportsManager.get_instance ();
             
             this.set_show_close_button (true);
             this.height_request = 47;

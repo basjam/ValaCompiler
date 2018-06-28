@@ -16,10 +16,16 @@
 
 namespace ValaCompiler.Utils {
     public class ReportsManager {
-
+        //public Widgets.CompileReport compile_report;
+        public Utils.CompileParser compile_parser;
+        
         public Utils.ValaC valac;
         public Utils.AppTester app_tester;
-
+        
+        public Widgets.CompileReport compile_report;
+        
+        public string[] error_string_array;
+        
         public static ReportsManager instance = null;
         public static ReportsManager get_instance () {
             if (instance == null) {
@@ -29,29 +35,48 @@ namespace ValaCompiler.Utils {
         }
 
         public ReportsManager () {
+            //compile_report = Widgets.CompileReport.get_instance ();
+            compile_parser = Utils.CompileParser.get_instance ();
             app_tester = Utils.AppTester.get_instance ();
+            
             app_tester.test_line_out.connect ((line) => {
                 test_line_out (line);
             });
+            
             valac = Utils.ValaC.get_instance ();
-            valac.compile_line_out.connect ((line) => {
-                 compile_line_out (line);
+            valac.compile_line_out.connect ((report) => {
+                compile_line_out (report);
             });
+            valac.starting.connect (() => {
+                clear_list ();
+            });
+            
+            compile_report = Widgets.CompileReport.get_instance ();
         }
-
-        public void compile_line_out (string line) {
-            parse_compile_line (line);
+        
+        public void clear_list () {
+            compile_report.clear_list ();
+        } 
+        
+        public void compile_line_out (string report) {
+            parse_compile_report (report);
         }
 
         public void test_line_out (string line) {
-            debug ("test-line-out: %s", line);
         }
         
-        public void parse_compile_line (string line) {
-            
+        public void parse_compile_report (string report) {
+            ErrorObject[] error_object_array = compile_parser.parse (report);
+            /*For debug
+            int object_number = 1;
+            foreach (ErrorObject error_object in error_object_array) {
+                message ("------" + object_number.to_string () + "---------");
+                foreach (string item in error_object.content) {
+                    message (item);
+                };
+                object_number ++;
+            };*/
+            compile_report.populate (error_object_array);
         }
-        
-        
-
     }
 }

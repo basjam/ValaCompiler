@@ -29,12 +29,12 @@ namespace ValaCompiler.Utils {
             };
             return instance;
         }
+        
         public CompileManager () {
             valac = Utils.ValaC.get_instance ();
             files_manager = Utils.FilesManager.get_instance ();
             options_manager = Utils.OptionsManager.get_instance ();
         }
-
         
         public void compile () {
             string[] files = files_manager.get_files ();
@@ -46,7 +46,6 @@ namespace ValaCompiler.Utils {
             foreach (string option in options) {
                 args += option;
             };
-            debug ("Beginning compile process");
             valac.compile.begin (args);
         }
     }

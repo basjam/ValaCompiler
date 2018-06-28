@@ -77,12 +77,10 @@ namespace ValaCompiler.Utils {
 
         public bool process_line (IOChannel channel, IOCondition condition, string stream_name) {
             if (condition == IOCondition.HUP) {
-                if (stream_name == "stdout"){
-                    test_done();
-                    //print ("ValaC: " + stream_name + " is done. \n");
+                if (stream_name == "stdout") {
+                    test_done ();
                 };
-                if (stream_name == "stderr"){
-                    //print ("ValaC: " + stream_name + " is done.\n");
+                if (stream_name == "stderr") {
                 }
                 return false;
             }
@@ -91,7 +89,7 @@ namespace ValaCompiler.Utils {
                 string line;
                 channel.read_line (out line, null, null);
                 test_line_out (line);
-                //print ("ValaC: " + stream_name + ": " + line );
+                
             } catch (IOChannelError e) {
                 stdout.printf ("%s: IOChannelError: %s\n", stream_name, e.message);
             } catch (ConvertError e) {
