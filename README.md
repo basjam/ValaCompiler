@@ -42,6 +42,11 @@ To install, use 'make install'
 
     sudo make install
 
+## Arch Linux
+Arch Linux users can find ValaCompiler under the name [valacompiler-git](https://aur.archlinux.org/packages/valacompiler-git/) in the **AUR**:
+
+`$ aurman -S valacompiler-git`
+
 ## Precautions
 
 * This app will create a folder named "valacompiler" in your source folder.
