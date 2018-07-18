@@ -1,9 +1,18 @@
-# ValaCompiler
-A simple GUI for the command line valac.
+<p align="center">
+    <img src="https://github.com/basjam/ValaCompiler/blob/master/data/icons/128/com.github.basjam.valacompiler.svg" alt="logo"> <br>
+</p>
 
-![Screenshot](screenshots/ValaCompiler-ProjectPage(ScreenShot).png)
-![Screenshot](screenshots/ValaCompiler-CompilerReport(ScreenShot).png)
-![Screenshot](screenshots/ValaCompiler-TestReport(ScreenShot).png)
+<div>
+  <h1 align="center">ValaCompiler</h1>
+  <h3 align="center">A simple GUI for the command line valac.</h3>
+</div>
+
+<p align="center">
+    <img src="https://github.com/basjam/ValaCompiler/blob/master/screenshots/ValaCompiler-ProjectPage(ScreenShot).png" alt="Screenshot"> <br>
+    <img src="https://github.com/basjam/ValaCompiler/blob/master/screenshots/ValaCompiler-CompilerReport(ScreenShot).png" alt="Screenshot"> <br>
+    <img src="https://github.com/basjam/ValaCompiler/blob/master/screenshots/ValaCompiler-TestReport(ScreenShot).png" alt="Screenshot"> <br>
+</p>
+
 
 ## What the application does
 1-Select your project source folder, and create a "valacompiler" folder in it.
