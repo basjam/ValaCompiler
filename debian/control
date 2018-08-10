@@ -2,12 +2,11 @@ Source: com.github.basjam.valacompiler
 Section: x11
 Priority: optional
 Maintainer: Basem Kheyar <Basjam@gmail.com>
-Build-Depends: cmake,
-               debhelper (>= 9),
-               cmake-elementary,
+Build-Depends: debhelper (>= 9),
+               meson,
                libgranite-dev,
                libgtk-3-dev,
-               valac-0.28 | valac (>= 0.28)
+               valac
 Standards-Version: 3.9.6
 
 Package: com.github.basjam.valacompiler
