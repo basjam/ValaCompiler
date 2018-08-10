@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2017 Your Name <basjam@gmail.com> -->
+<component type="desktop">
+    <id>com.github.basjam.valacompiler.desktop</id>
+    <metadata_license>CC0</metadata_license>
+    <project_license>GPL-2.0+</project_license>
+    <name>ValaCompiler</name>
+    <summary>A Simple GUI for valac</summary>
+    <description>
+        <p>A simple GUI for valac that is aimed at replacing the terminal use in vala development.</p>
+    </description>
+    <provides>
+        <binary>com.github.basjam.valacompiler</binary>
+    </provides>
+    <developer_name>Basem Kheyar</developer_name>
+    <url type="homepage">https://github.com/basjam/ValaCompiler/</url>
+    <url type="bugtracker">https://github.com/basjam/ValaCompiler/issues</url>
+    <update_contact>basjam@gmail.com</update_contact>
+    <screenshots>
+        <screenshot type="default">
+            <image>https://raw.githubusercontent.com/basjam/ValaCompiler/master/screenshots/ValaCompiler-ProjectPage(ScreenShot).png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/basjam/ValaCompiler/master/screenshots/ValaCompiler-CompilerReport(ScreenShot).png</image>
+        </screenshot>
+        <screenshot>
+            <image>https://raw.githubusercontent.com/basjam/ValaCompiler/master/screenshots/ValaCompiler-TestReport(ScreenShot).png</image>
+        </screenshot>
+    </screenshots>
+    <releases>
+        <release version="1.0.0" date="2018-06-14">
+            <description>
+                <ul>
+                <li>Consistent UI for Files and Options in ProjectPage.</li>
+                <li>Cool new sliding animation for options side panel.</li>
+                <li>Ability to manually add and remove to the list.</li>
+                <li>App remembers options and their status per project.</li>
+                <li>Smarter buttons on the Headerbar. Compile button is there when you want it. Test button checks weather there is a test file. Kill test button appears only when there is a test to be killed.</li>
+                <li>Separate App name in title and project address in subtitle on the Headerbar.</li>
+                <li>Smaller window by default.</li>
+                <li>Dark button colors.</li>
+                </ul>
+            </description>
+        </release>
+        <release version="0.1.16" date="2018-03-05">
+            <description>
+                <ul>
+                <li>Minor UI improvements</li>
+                <li>Kill button now works through pid instead of "killall TEST"</li>
+                </ul>
+            </description>
+        </release>
+        <release version="0.1.15" date="2018-02-22">
+            <description>
+                <ul>
+                <li>Made UI more consistent across pages</li>
+                </ul>
+            </description>
+        </release>
+        <release version="0.1.14" date="2018-02-15">
+            <description>
+                <ul>
+                <li>Minor UI improvements</li>
+                <li>Add granite checkbutton</li>
+                <li>Fixed bug #14. Files marked as executable can now be listed by the app</li>
+                </ul>
+            </description>
+        </release>
+        <release version="0.1.11" date="2017-11-29">
+            <description>
+                <p>Release: Initial Release</p>
+            </description>
+        </release>
+    </releases>
+    <custom>
+        <value key="x-appcenter-color-primary">#3f4149</value>
+        <value key="x-appcenter-color-primary-text">#ffffff</value>
+        <value key="x-appcenter-suggested-price">2</value>
+    </custom>
+</component>

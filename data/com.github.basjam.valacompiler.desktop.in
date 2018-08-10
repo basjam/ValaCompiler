@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=ValaCompiler
+GenericName=Vala Compiler
+Comment=A simple GUI for valac
+Categories=Development;
+Exec=com.github.basjam.valacompiler
+Icon=com.github.basjam.valacompiler
+Terminal=false
+Type=Application
+X-GNOME-Gettext-Domain=valacompiler
+X-GNOME-UsesNotifications=true
+Keywords=Vala;Compiler;valacompiler;Valac;ValaC;
