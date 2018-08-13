@@ -46,7 +46,6 @@ namespace ValaCompiler.Widgets {
             box.add (options_entry);
 
             var headerbar = new Gtk.HeaderBar ();
-            //TODO figure out why headerbar.title does not work. Using subtitle for now.
             headerbar.subtitle = _("Add options");
             headerbar.show_close_button = true;
             headerbar.pack_end (add_options_button);
