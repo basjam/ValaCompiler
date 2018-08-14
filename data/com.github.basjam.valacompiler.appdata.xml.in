@@ -77,5 +77,5 @@
         <value key="x-appcenter-color-primary-text">#ffffff</value>
         <value key="x-appcenter-suggested-price">2</value>
     </custom>
-      <content_rating type="oars-1.1" />
+      <content_rating type="oars-1.0" />
 </component>
