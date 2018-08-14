@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2017 Your Name <basjam@gmail.com> -->
 <component type="desktop">
-    <id>com.github.basjam.valacompiler.desktop</id>
+    <id>com.github.basjam.valacompiler</id>
     <metadata_license>CC0</metadata_license>
     <project_license>GPL-2.0+</project_license>
     <name>ValaCompiler</name>
@@ -29,6 +29,7 @@
     </screenshots>
     <releases>
         <release version="1.0.0" date="2018-06-14">
+            <content_rating type="oars-1.0" />
             <description>
                 <ul>
                 <li>Consistent UI for Files and Options in ProjectPage.</li>
@@ -77,5 +78,4 @@
         <value key="x-appcenter-color-primary-text">#ffffff</value>
         <value key="x-appcenter-suggested-price">2</value>
     </custom>
-      <content_rating type="oars-1.0" />
 </component>
