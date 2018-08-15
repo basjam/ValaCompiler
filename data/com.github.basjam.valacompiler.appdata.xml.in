@@ -58,8 +58,15 @@
         </screenshot>
     </screenshots>
     <releases>
+        <release version="1.0.1" date="2018-08-14">
+            <description>
+                <ul>
+                <li>New Logo.</li>
+                <li>Ready for Juno (Switched to Meson).</li>
+                </ul>
+            </description>
+        </release>
         <release version="1.0.0" date="2018-06-14">
-            
             <description>
                 <ul>
                 <li>Consistent UI for Files and Options in ProjectPage.</li>
