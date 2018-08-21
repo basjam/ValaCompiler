@@ -76,7 +76,6 @@ namespace ValaCompiler.Utils {
                 //Check and remove "&&" if it exists
                 if (option_string.has_prefix ("<<<NOTACTIVE>>>")) {
                     active = false;
-                    //TODO use split with "&&" delimit. use the [1]
                     option_string = option_string.replace ("<<<NOTACTIVE>>>", "");
                 };
                 

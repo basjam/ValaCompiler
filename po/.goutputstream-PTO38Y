@@ -1,4 +1,0 @@
-# Translation files
-set (GETTEXT_PACKAGE "${CMAKE_PROJECT_NAME}")
-add_definitions (-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
-add_subdirectory (po)

@@ -1,5 +1,173 @@
+# German translations for com.github.basjam.valacompiler package.
+# Copyright (C) 2018 THE com.github.basjam.valacompiler'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.basjam.valacompiler package.
+# Automatically generated, 2018.
+#
 msgid ""
 msgstr ""
+"Project-Id-Version: com.github.basjam.valacompiler\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-08 18:04-0400\n"
+"PO-Revision-Date: 2018-08-08 18:04-0400\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: de\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"Content-Type: text/plain; charset=ASCII\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/Window.vala:62
+msgid "Select Project Folder"
+msgstr ""
+
+#: src/Window.vala:65
+msgid "Cancel"
+msgstr ""
+
+#: src/Window.vala:67
+msgid "Open"
+msgstr ""
+
+#: src/Window.vala:72
+msgid "Vala files"
+msgstr ""
+
+#: src/Window.vala:76
+msgid "All Files"
+msgstr ""
+
+#: src/Widgets/FilesListBox.vala:58
+msgid "Files"
+msgstr ""
+
+#: src/Widgets/FilesListBox.vala:59
+msgid "Toggle files to be compiled"
+msgstr ""
+
+#: src/Widgets/FilesListBox.vala:85
+msgid "Change source folder"
+msgstr ""
+
+#: src/Widgets/FilesListRow.vala:47
+msgid "Click to toggle file"
+msgstr ""
+
+#: src/Widgets/WelcomePage.vala:29
+#: data/com.github.basjam.valacompiler.desktop.in:4
+msgid "Vala Compiler"
+msgstr ""
+
+#: src/Widgets/WelcomePage.vala:29
+msgid "A simple GUI for the command line valac"
+msgstr ""
+
+#: src/Widgets/WelcomePage.vala:35
+msgid "Source folder"
+msgstr ""
+
+#: src/Widgets/WelcomePage.vala:35
+msgid "Open your source folder."
+msgstr ""
+
+#: src/Widgets/WelcomePage.vala:38
+msgid "Open last source folder"
+msgstr ""
+
+#: src/Widgets/ReportPage.vala:57
+msgid "Compile Report"
+msgstr ""
+
+#: src/Widgets/ReportPage.vala:58
+msgid "Live Test Report"
+msgstr ""
+
+#: src/Widgets/ReportPage.vala:92 src/Widgets/ReportPage.vala:120
+#: src/Widgets/ReportPage.vala:132
+msgid "Clear Report"
+msgstr ""
+
+#: src/Widgets/ReportPage.vala:99 src/Widgets/ReportPage.vala:123
+#: src/Widgets/ReportPage.vala:135
+msgid "Undo Last Clear"
+msgstr ""
+
+#: src/Widgets/OptionsSidebar.vala:55 src/Widgets/HeaderBar.vala:72
+msgid "Options"
+msgstr ""
+
+#: src/Widgets/OptionsSidebar.vala:63 src/Widgets/AddOptionsDialog.vala:39
+#: src/Widgets/AddOptionsDialog.vala:50
+msgid "Add options"
+msgstr ""
+
+#: src/Widgets/OptionsSidebar.vala:72
+msgid "Clear all options"
+msgstr ""
+
+#: src/Widgets/OptionsListRow.vala:43
+msgid "Remove option"
+msgstr ""
+
+#: src/Widgets/OptionsListRow.vala:59
+msgid "Click to toggle option"
+msgstr ""
+
+#: src/Widgets/AddOptionsDialog.vala:30
+msgid "Enter options separated by a space eg: --pkg=granite --pkg=gtk+-3.0"
+msgstr ""
+
+#: src/Widgets/HeaderBar.vala:82
+msgid "Compile"
+msgstr ""
+
+#: src/Widgets/HeaderBar.vala:88
+msgid "Test the app"
+msgstr ""
+
+#: src/Widgets/HeaderBar.vala:97
+msgid "Kill all running tests"
+msgstr ""
+
+#: src/Widgets/HeaderBar.vala:152
+msgid "Welcome Page"
+msgstr ""
+
+#: src/Widgets/HeaderBar.vala:154
+msgid "Report Page"
+msgstr ""
+
+#: src/Widgets/HeaderBar.vala:163
+msgid "Project Page"
+msgstr ""
+
+#: data/com.github.basjam.valacompiler.desktop.in:3
+#: data/com.github.basjam.valacompiler.appdata.xml.in:7
+msgid "ValaCompiler"
+msgstr ""
+
+#: data/com.github.basjam.valacompiler.desktop.in:5
+msgid "A simple GUI for valac"
+msgstr ""
+
+#: data/com.github.basjam.valacompiler.desktop.in:8
+msgid "com.github.basjam.valacompiler"
+msgstr ""
+
+#: data/com.github.basjam.valacompiler.desktop.in:12
+msgid "Vala;Compiler;valacompiler;Valac;ValaC;"
+msgstr ""
+
+#: data/com.github.basjam.valacompiler.appdata.xml.in:8
+msgid "A Simple GUI for valac"
+msgstr ""
+
+#: data/com.github.basjam.valacompiler.appdata.xml.in:10
+msgid ""
+"A simple GUI for valac that is aimed at replacing the terminal use in vala "
+"development."
+msgstr ""
+
+#: data/com.github.basjam.valacompiler.appdata.xml.in:15
+msgid "Basem Kheyar"
+msgstr ""
